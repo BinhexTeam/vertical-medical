@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acccess_residence_residence_group_user,residence_residence_group_user,model_residence_residence,base.group_user,1,1,1,1
+access_residence_type_group_user,residence_type_group_user,model_residence_type,base.group_user,1,1,1,1
+access_residence_room_group_user,residence_room_group_user,model_residence_room,base.group_user,1,1,1,1
+access_residence_floor_group_user,residence_floor_group_user,model_residence_floor,base.group_user,1,1,1,1

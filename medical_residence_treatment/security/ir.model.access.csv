@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_residence_pacients_medical_residence_pacients,medical_residence_pacients.medical_residence_pacients,model_medical_residence_pacients_medical_residence_pacients,base.group_user,1,1,1,1
