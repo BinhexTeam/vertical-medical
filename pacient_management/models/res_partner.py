@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from dateutil.relativedelta import relativedelta
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class Resident(models.Model):
     _inherit = "res.partner"
@@ -17,20 +14,17 @@ class Resident(models.Model):
         required=True,
         track_visibility='onchange'
     )
-
     identification = fields.Char(string=_("Identification"), 
                                  required=True, 
                                  size=9,
                                  track_visibility='onchange'
                                  )
-
     gender = fields.Selection(
         [("ma", "Male"), ("fe", "Female"), ("ot", "Other")],
         string=_("Gender"),
         required=True,
         track_visibility='onchange'
     )
-
     marital_status = fields.Selection(
         [
             ("single", "Single"),
@@ -67,9 +61,7 @@ class Resident(models.Model):
         string="Family Contacts",
         track_visibility='onchange'
     )
-
     observations = fields.Text(string=_("Observations"), track_visibility='onchange')
-
     # Documents
     document_ids = fields.One2many("dms.file", "resident_id_doc", string=_("Document"), track_visibility='onchange')
 
@@ -105,25 +97,6 @@ class Resident(models.Model):
         if self.is_family == True:
             self.residence_id = False
 
-    # def action_see_documents_tree(self):
-    #     self.ensure_one()
-    #     directory_id = False
-    #     folder = self.env["dms.directory"].sudo().search([])
-    #     for fold in folder:
-    #         if fold.name == self.residence_id.name and fold.parent_id.name == _('Residents'):
-    #             directory_id = fold.id
-    #     return {
-    #         "name": _("Documents"),
-    #         "res_model": "dms.file",
-    #         "type": "ir.actions.act_window",
-    #         "view_mode": "kanban",
-    #         "context": {
-    #             "search_default_partner_id": self.id,
-    #             "default_partner_id": self.id,
-    #             # "searchpanel_default_directory_id": directory_id,
-    #         },
-    #     }
-    
     def action_view_dms(self):
         action = self.env["ir.actions.act_window"]._for_xml_id("dms.action_dms_file")
         directory_id = False

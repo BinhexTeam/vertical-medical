@@ -1,9 +1,7 @@
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import models, fields, api, tools, _
-import logging
 from odoo.exceptions import ValidationError
-
-_logger = logging.getLogger(__name__)
-
 
 class ResUsers(models.Model):
     _inherit = "res.users"

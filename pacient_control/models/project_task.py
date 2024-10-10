@@ -1,12 +1,10 @@
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, date
 import pytz
 from odoo import fields, models, api, _, SUPERUSER_ID
 from odoo.exceptions import ValidationError, UserError
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class AppointmentSelection(models.Model):
     _name = "rm.project.task.app.selection"
@@ -14,18 +12,14 @@ class AppointmentSelection(models.Model):
     name = fields.Char(translate=True)
     task_ids = fields.One2many("project.task", "app_selection_id")
 
-
 class ProjectTask(models.Model):
     _inherit = "project.task"
-
     tasktype_id = fields.Many2one("project.task.tasktype", string=_("Task Type"))
-
     app_selection_id = fields.Many2one(
         "rm.project.task.app.selection", string=_("Appointment Type")
     )
     app_partner_id = fields.Many2one("res.partner", string=_("Appointment Partner"))
     document_ids = fields.One2many("dms.file", "task_id", string=_("Analysis Document"))
-
     product_event_ids = fields.Many2many(
         "product.template",
         string=_("Medicines"),
@@ -38,10 +32,8 @@ class ProjectTask(models.Model):
     control_hygiene_ids = fields.One2many(
         "rm.resident.control.hygiene.element", "task_id", string=_("Hygiene Events")
     )
-
     project_name = fields.Char(related="project_id.name")
     residence_id_task = fields.Integer(related="project_id.residence_id.id")
-
     # Document for analysis task
     directory_id = fields.Many2one(
         "dms.directory", compute="get_folder", store=True, string=_("Workspace")
@@ -90,9 +82,7 @@ class ProjectTask(models.Model):
             )
         )
         self.tag_id = tag.id
-
     # ----------------------------------------------------------------------------------------------------------------
-
     @api.model
     def create(self, vals):
         # Todays date as default if is not set
@@ -104,7 +94,6 @@ class ProjectTask(models.Model):
         followers = self.message_follower_ids
         template_id = self.env.ref("pacient_control.email_template").id
         task = self.tasktype_id.name
-        # self.env['mail.template'].browse(template_id).with_context(task=task).send_mail(self.id, force_send=True)
 
     @api.onchange("product_event_ids")
     def control_resident_treatment(self):
@@ -145,7 +134,6 @@ class ProjectTask(models.Model):
             self.control_hygiene_ids = [(6, 0, [elem_1.id, elem_2.id, elem_3.id])]
 
     # Basic control fields for task
-
     weight = fields.Float(string=_("Weight"))
     height = fields.Float(string=_("Height (meters)"))
     imc = fields.Float(compute="compute_imc", string=_("IMC"))
@@ -190,7 +178,6 @@ class ProjectTask(models.Model):
             else:
                 record.num_days = 0
 
-
 class HygieneElement(models.Model):
     _name = "rm.resident.control.hygiene.element"
     _description = "Hygiene Element"
@@ -203,14 +190,12 @@ class HygieneElement(models.Model):
     check = fields.Boolean(string=_("Done"))
     task_id = fields.Many2one("project.task", string=_("Task"))
 
-
 class HygieneName(models.Model):
     _name = "rm.resident.control.hygiene.element.name"
     _description = "Hygiene Name"
 
     name = fields.Char(translate=True)
     element_ids = fields.One2many("rm.resident.control.hygiene.element", "name_id")
-
 
 class TaskType(models.Model):
     _name = "project.task.tasktype"

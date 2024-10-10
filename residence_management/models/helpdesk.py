@@ -1,11 +1,8 @@
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import models, fields, api, _, SUPERUSER_ID
 import re
 from odoo.exceptions import ValidationError
-
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class HelpdesktTypeTicket(models.Model):
     _inherit = "helpdesk.ticket.type"

@@ -1,96 +1,67 @@
 <odoo noupdate="0">
-
   <!--Category on settings-->
-
   <record model="ir.module.category" id="module_category_residence">
     <field name="name">Residence Management</field>
     <field name="description">Category for Residence</field>
   </record>
-
   <!--User types-->
-
   <record model="ir.module.category" id="module_category_residence_user_type">
     <field name="name">User Type</field>
     <field name="description">User Type for employee</field>
     <field name="parent_id" ref="module_category_residence"/>
   </record>
-
   <record model="res.groups" id="group_residence_employee">
     <field name="name">Employee</field>
     <field name="category_id" ref="module_category_residence_user_type"/>
     <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
   </record>
-
   <record model="res.groups" id="group_residence_manager">
     <field name="name">Residence Manager</field>
     <field name="category_id" ref="module_category_residence_user_type"/>
     <field name="implied_ids" eval="[(4, ref('group_residence_employee'))]"/>
   </record>
-
   <record model="res.groups" id="group_residence_admin">
     <field name="name">Administrator</field>
     <field name="category_id" ref="module_category_residence_user_type"/>
     <field name="implied_ids" eval="[(4, ref('group_residence_manager'))]"/>
     <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
   </record>
-
-  <!--
-  <record model="res.groups" id="group_residence_expenses">
-    <field name="name">Expenses</field>
-  </record>
-  
-  <record model="res.groups" id="group_residence_diaries">
-    <field name="name">Diaries</field>
-    <field name="category_id" ref="module_category_residence"></field>
-  </record>
-  -->
-
   <!--Rules-->
-
   <record id="employee_residence_rule" model="ir.rule">
     <field name="name">Employee Residence</field>
     <field name="model_id" ref="model_rm_residence"/>
     <field name="groups" eval="[(4, ref('group_residence_employee')), (4, ref('group_residence_manager'))]"/>
     <field name="domain_force">[('employee_ids', 'in', user.employee_id.id)]</field>
   </record>
-
-
   <record id="admin_residence_rule" model="ir.rule">
     <field name="name">Admin Residence</field>
     <field name="model_id" ref="model_rm_residence"/>
     <field name="groups" eval="[(4, ref('group_residence_admin'))]"/>
     <field name="domain_force">[(1, '=', 1)]</field>
   </record>
-
   <record id="employee_room_rule" model="ir.rule">
     <field name="name">Employee Room</field>
     <field name="model_id" ref="model_rm_residence_room"/>
     <field name="groups" eval="[(4, ref('group_residence_employee')), (4, ref('group_residence_manager'))]"/>
     <field name="domain_force">[('residence_id.employee_ids', 'in', user.employee_id.id)]</field>
   </record>
-
-
   <record id="admin_room_rule" model="ir.rule">
     <field name="name">Admin Room</field>
     <field name="model_id" ref="model_rm_residence_room"/>
     <field name="groups" eval="[(4, ref('group_residence_admin'))]"/>
     <field name="domain_force">[(1, '=', 1)]</field>
   </record>
-
   <record id="employee_resident_rule" model="ir.rule">
     <field name="name">Employee Resident</field>
     <field name="model_id" ref="base.model_res_partner"/>
     <field name="groups" eval="[(4, ref('group_residence_employee')), (4, ref('group_residence_manager'))]"/>
     <field name="domain_force">[('residence_id.employee_ids', 'in', user.employee_id.id)]</field>
   </record>
-
   <record id="employee_document_rule" model="ir.rule">
     <field name="name">Employee Document</field>
     <field name="model_id" ref="dms.model_dms_file"/>
     <field name="groups" eval="[(4, ref('group_residence_employee')), (4, ref('group_residence_manager'))]"/>
-    <!-- <field name="domain_force">[('partner_id.residence_id.employee_ids', 'in', user.employee_id.id)]</field> -->
   </record>
-
   <record id="access_group_dms" model="dms.access.group">
     <field name="name">Residence link</field>
     <field name="perm_create">True</field>
@@ -98,27 +69,22 @@
     <field name="perm_unlink">True</field>
     <field name="explicit_user_ids" eval="[(6, 0, [ref('base.user_admin'), ref('base.group_user')])]" />
   </record>
-
-
   <record id="admin_resident_rule" model="ir.rule">
     <field name="name">Admin Resident</field>
     <field name="model_id" ref="base.model_res_partner"/>
     <field name="groups" eval="[(4, ref('group_residence_admin'))]"/>
     <field name="domain_force">[(1, '=', 1)]</field>
   </record>
-
   <record id="employee_employees_rule" model="ir.rule">
     <field name="name">Employe Employees</field>
     <field name="model_id" ref="hr.model_hr_employee"/>
     <field name="groups" eval="[(4, ref('group_residence_employee')), (4, ref('group_residence_manager'))]"/>
     <field name="domain_force">[('residence_id.id', '=', user.employee_id.residence_id.id)]</field>
   </record>
-
   <record id="admin_employees_rule" model="ir.rule">
     <field name="name">Admin Employees</field>
     <field name="model_id" ref="hr.model_hr_employee"/>
     <field name="groups" eval="[(4, ref('group_residence_admin'))]"/>
     <field name="domain_force">[(1, '=', 1)]</field>
   </record>
-
 </odoo>

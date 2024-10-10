@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from . import employee
+from . import hr_employee
 from . import residence
-from . import image
+from . import rm_image
 from . import residence_type
-from . import department
-from . import expense
+from . import hr_department
+from . import hr_expense
 from . import res_partner
-from . import room
-from . import recruitment
-from . import journal
+from . import hr_applicant
 from . import project
 from . import project_task
 from . import res_config_settings

@@ -1,12 +1,10 @@
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, date
 import pytz
 from odoo import fields, models, api, _, SUPERUSER_ID
 from odoo.exceptions import ValidationError, UserError
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class ProjectTask(models.Model):
     _inherit = "project.task.recurrence"
@@ -37,4 +35,3 @@ class ProjectTask(models.Model):
             "app_selection_id",
             "app_partner_id",
         ]
-        # return super(ProjectTask, self)._get_recurring_fields() + ['tasktype_id', 'product_event_ids', 'app_selection_id', 'app_partner_id']

@@ -1,29 +1,22 @@
-# -*- coding: utf-8 -*-
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 {
     "name": "Residence Employee",
     "summary": """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-    "description": """
-        Long description of module's purpose
-    """,
-    "author": "My Company",
-    "website": "http://www.yourcompany.com",
+        Residence Employee""",
+    "author": "Binhex",
+    "website": "https://github.com/BinhexTeam/vertical-medical",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    "category": "Uncategorized",
-    "version": "0.1",
+    "category": "Medical",
+    "version": "16.0.1.0",
     # any module necessary for this one to work correctly
-    "depends": ["base", "residence_management", "hr", "hr_recruitment"],
+    "depends": ["residence_management", "hr_recruitment"],
     # always loaded
     "data": [
-        # 'security/ir.model.access.csv',
-        "views/employee.xml",
-        "views/recruitment.xml",
+        "views/hr_employee_views.xml",
+        "views/hr_jobs_views.xml",
     ],
-    # only loaded in demonstration mode
-    "demo": [
-        "demo/demo.xml",
-    ],
+    "mantainer": ["szalatyzuzanna"],
 }

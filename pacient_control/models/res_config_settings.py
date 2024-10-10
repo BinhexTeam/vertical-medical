@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
-
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import fields, models, _
-
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class Company(models.Model):
     _inherit = "res.company"
-
     # Categories for medicine and vaccine
-
     category_med_ids = fields.Many2many(
         "product.category",
         "category_med_ids_",
@@ -28,13 +21,11 @@ class Company(models.Model):
 
 class ResConfigSettings(models.TransientModel):
     _inherit = ["res.config.settings"]
-
     group_categories_1 = fields.Boolean(
         string=_("Categories"),
         implied_group="pacient_control.group_categories_1",
         default=True,
     )
-
     medicine_category_ids = fields.Many2many(
         string=_("Medicine Categories"),
         related="company_id.category_med_ids",

@@ -1,0 +1,24 @@
+<odoo>
+  <record model="ir.actions.act_window" id="residence_type_list_action">
+    <field name="name">Residence Type</field>
+    <field name="res_model">rm.residence.type</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create Residence Type</p>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="residence_type_tree_view">
+    <field name="name">Residence Type Tree</field>
+    <field name="model">rm.residence.type</field>
+    <field name="arch" type="xml">
+      <tree editable="bottom">
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <menuitem id="main_residence_management_menu" name="Residence Management"/>
+  <menuitem id="configuration_menu" name="Configuration" parent="main_residence_management_menu" groups="residence_management.group_residence_manager"/>
+  <menuitem id="residence_type_menu" name="Residence Types" parent="configuration_menu" action="residence_type_list_action"/>
+</odoo>

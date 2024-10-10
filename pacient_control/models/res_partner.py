@@ -1,10 +1,8 @@
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from dateutil.relativedelta import relativedelta
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
-import logging
-
-_logger = logging.getLogger(__name__)
-
 
 class Resident(models.Model):
     _inherit = "res.partner"
@@ -17,7 +15,6 @@ class Resident(models.Model):
     state_id = fields.Many2one("res.country.state", string=_("State"), track_visibility='onchange')
     country_id = fields.Many2one("res.country", string=_("Country"), track_visibility='onchange')
     phone = fields.Char(string=_("Phone"), track_visibility='onchange')
-    
     medical_info_ids = fields.One2many(
         "rm.resident.medical.info", "resident_id", string=_("Medical Info"),
         track_visibility='onchange'
@@ -26,13 +23,10 @@ class Resident(models.Model):
         "rm.resident.treatment", "resident_id", string=_("Medical Treatment"),
         track_visibility='onchange'
     )
-
     task_appointment_id = fields.One2many(
         "project.task", "app_partner_id", string=_("Appointments"),
         track_visibility='onchange'
     )
-
-    # control_ids = fields.One2many('rm.resident.control', 'resident_id', string = _("Controles"))
 
     def action_see_basic_calendar(self):
         self.ensure_one()

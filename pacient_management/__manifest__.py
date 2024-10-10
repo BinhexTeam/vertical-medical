@@ -1,27 +1,24 @@
-# -*- coding: utf-8 -*-
+# Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 {
     "name": "Pacient Management",
     "summary": """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-    "description": """
-        Long description of module's purpose
-    """,
-    "author": "My Company",
-    "website": "http://www.yourcompany.com",
+        Pacient management.""",
+    "author": "Binhex",
+    "website": "https://github.com/BinhexTeam/vertical-medical",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    "category": "Uncategorized",
-    "version": "0.1",
+    "category": "Medical",
+    "version": "16.0.1.0",
     # any module necessary for this one to work correctly
-    "depends": ["base", "dms", "residence_management"],
+    "depends": ["dms", "residence_management"],
     # always loaded
     "data": [
         "security/ir.model.access.csv",
-        "views/document.xml",
-        "views/res_partner_resident.xml",
-        "views/res_partner_family.xml",
+        "views/dms_file_views.xml",
+        "views/res_partner_resident_views.xml",
+        "views/res_partner_family_views.xml",
     ],
     "images": ["static/description/icon.png"],
     'assets': {

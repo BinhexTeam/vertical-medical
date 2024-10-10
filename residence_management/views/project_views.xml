@@ -1,0 +1,14 @@
+<odoo>
+  <record id="inherited_model_view_form_project" model="ir.ui.view">
+    <field name="name">inherited.model.form.project</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='label_tasks']" position="after">
+        <group>
+          <field name="residence_id" readonly="1"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>

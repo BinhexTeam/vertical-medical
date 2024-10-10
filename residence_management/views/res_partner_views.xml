@@ -1,0 +1,167 @@
+<odoo>
+  <record id="search_pacients" model="ir.ui.view">
+    <field name="name">Search Pacients</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <search string="Resident">
+        <field name="name"/>
+        <separator/>
+        <filter string="Residencias" name="group" context="{'group_by': 'residence_id'}"/>
+        <field name="room_res_id"/>
+        <field name="residence_id"/>
+      </search>
+    </field>
+  </record>
+
+  <record id="res_partner_view_form_inherit_a" model="ir.ui.view">
+    <field name="name">res.partner.view.form.room</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='contact_addresses']" position="before">
+        <page name="residence_info" string="Residence Info" autofocus="autofocus">
+          <group>
+            <field name="residence_id" attrs="{'invisible': [('employee_residence_id', '!=', False)]}"/>
+            <field name="room_res_id" domain="[('residence_id', '=', residence_id)]" context="{'default_residence_id': residence_id}" attrs="{'invisible': [('residence_id', '=', False)]}"/>
+            <field name="employee_residence_id" attrs="{'invisible': [('employee_residence_id', '=', False)]}"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_pacient_tree" model="ir.ui.view">
+    <field name="name">res.partner.view.tree</field>
+    <field name="model">res.partner</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="title"/>
+        <field name="display_name"/>
+        <field name="country_id"/>
+        <field name="date"/>
+        <field name="residence_id"/>
+        <field name="room_res_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_pacient_form" model="ir.ui.view">
+    <field name="name">res.partner.view.form</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+          <div class="oe_title">
+            <h2>
+              <field name="title" placeholder="Title"/>
+            </h2>
+            <h1>
+              <field name="name" default_focus="1" placeholder="Name" required="1"/>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="type" invisible="1"/>
+              <field name="residence_id"/>
+              <field name="room_res_id" domain="[('residence_id', '=', residence_id)]" context="{'residence_': id}" attrs="{'invisible': [('residence_id', '=', False)]}"/>
+              <field name="date"/>
+              <field name="parent_id" invisible="1"/>
+            </group>
+            <group>
+              <label for="street" string="Address"/>
+              <div class="o_address_format">
+                <field name="street" placeholder="Street..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="street2" placeholder="Street 2..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="city" placeholder="City" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+              </div>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_pacient_kanban" model="ir.ui.view">
+    <field name="name">view_pacient_kanban</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <kanban class="o_res_partner_kanban" sample="1">
+        <field name="id"/>
+        <field name="display_name"/>
+        <field name="is_company"/>
+        <field name="parent_id"/>
+        <field name="city"/>
+        <field name="country_id"/>
+        <field name="image_128"/>
+        <field name="type"/>
+        <field name="residence_id"/>
+        <field name="room_res_id"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+              <t t-if="!record.is_company.raw_value">
+                <t t-if="record.type.raw_value === 'delivery'" t-set="placeholder" t-value="'/base/static/img/truck.png'"/>
+                <t t-elif="record.type.raw_value === 'invoice'" t-set="placeholder" t-value="'/base/static/img/money.png'"/>
+                <t t-else="" t-set="placeholder" t-value="'/base/static/img/avatar_grey.png'"/>
+                <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                  <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                </div>
+                <div class="o_kanban_image d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                  <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                </div>
+              </t>
+              <t t-else="">
+                <t t-set="placeholder" t-value="'/base/static/img/company_image.png'"/>
+                <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('res.partner', 'image_128', record.id.raw_value, placeholder)})" role="img"/>
+              </t>
+              <div class="oe_kanban_details d-flex flex-column">
+                <strong class="o_kanban_record_title oe_partner_heading">
+                  <field name="display_name"/>
+                </strong>
+                <span>
+                  <field name="residence_id"/>
+,                    <field name="room_res_id"/>
+                </span>
+                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                <ul>
+                  <li t-if="record.city.raw_value or record.country_id.raw_value">
+                    <t t-if="record.city.raw_value">
+                      <field name="city"/>
+                      <t t-if="record.country_id.raw_value">, </t>
+                    </t>
+                    <t t-if="record.country_id.raw_value">
+                      <field name="country_id"/>
+                    </t>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="pacient_list_action">
+    <field name="name">Residents</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+          (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_pacient_kanban')}),
+          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_pacient_tree')}),
+          (0, 0, {'view_mode': 'form', 'view_id': ref('view_pacient_form')})]"/>
+    <field name="search_view_id" ref="search_pacients"></field>
+    <field name="domain">[('residence_id', '!=', False)]</field>
+    <field name="context">{'default_type': 'contact'}</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create Resident</p>
+    </field>
+  </record>
+
+  <menuitem id="resident_menu" name="Residents"  parent="main_residence_management_menu" sequence="2" action="pacient_list_action"/>
+</odoo>

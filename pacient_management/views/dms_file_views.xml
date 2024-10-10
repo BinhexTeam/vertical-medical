@@ -1,0 +1,43 @@
+<odoo>
+  <record id="inherited_search" model="ir.ui.view">
+    <field name="name">inherited.search</field>
+    <field name="model">dms.file</field>
+    <field name="inherit_id" ref="dms.search_dms_file"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='name']" position="after">
+        <field name="resident_id_doc"/>
+        <field name="partner_id"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="inherited_tree_document_view" model="ir.ui.view">
+    <field name="name">inherited.tree.document.view</field>
+    <field name="model">dms.file</field>
+    <field name="inherit_id" ref="dms.view_dms_file_tree"/>
+    <field name="arch" type="xml">
+      <tree position="attributes">
+        <attribute name="create">true</attribute>
+        <attribute name="edit">true</attribute>
+      </tree>
+      <xpath expr="//field[@name='name']" position="after">
+        <field name="partner_id"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_dms_file_form_inherit_dms" model="ir.ui.view">
+    <field name="name">dms.file.view.form.inherit</field>
+    <field name="model">dms.file</field>
+    <field name="inherit_id" ref="dms.view_dms_file_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='settings']" position="after">
+        <group>
+          <field name="resident_id_doc"/>
+          <field name="partner_id"/>
+          <field name="directory_id"/>
+      </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>
