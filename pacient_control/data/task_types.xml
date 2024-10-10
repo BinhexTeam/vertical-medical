@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    <record id="BC_type" model="project.task.tasktype">
+      <field name="name">Basic Control</field>
+    </record>
+    <record id="T_type" model="project.task.tasktype">
+      <field name="name">Treatment</field>
+    </record>
+    <record id="M_type" model="project.task.tasktype">
+      <field name="name">Monitoring</field>
+    </record>
+    <record id="A_type" model="project.task.tasktype">
+      <field name="name">Analysis</field>
+    </record>
+    <record id="H_type" model="project.task.tasktype">
+      <field name="name">Hygiene</field>
+    </record>
+    <record id="App_type" model="project.task.tasktype">
+      <field name="name">Appointment</field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,173 @@
+<odoo>
+  <data noupdate="1">
+
+    <!-- Document storage -->
+    <record id="storage_base" model="dms.storage">
+      <field name="name">Resident Storage</field>
+      <field name="save_type">database</field>
+    </record>
+
+    <!-- Document category -->
+    <record id="documents_employees_documents" model="dms.category">
+      <field name="name">Documents employees</field>
+    </record>
+
+    <record id="documents_residents_documents" model="dms.category">
+      <field name="name">Documents residents</field>
+    </record>
+
+    <!-- Document directory -->
+    <record id="documents_residents_folder" model="dms.directory">
+      <field name="name">Residents</field>
+      <field name="is_root_directory" eval="True" />
+      <field name="parent_id" eval="False" />
+      <field name="color" eval="1" />
+      <field name="storage_id" ref="residence_management.storage_base" />
+      <field name="category_id" ref="residence_management.documents_residents_documents" />
+      <field name="group_ids" eval="[(6, 0, [ref('residence_management.access_group_dms')])]" />
+    </record>
+
+    <record id="documents_employees_folder" model="dms.directory">
+      <field name="name">Employees</field>
+      <field name="is_root_directory" eval="True" />
+      <field name="parent_id" eval="False" />
+      <field name="color" eval="1" />
+      <field name="storage_id" ref="residence_management.storage_base" />
+      <field name="category_id" ref="residence_management.documents_residents_documents" />
+      <field name="group_ids" eval="[(6, 0, [ref('residence_management.access_group_dms')])]" />
+    </record>
+
+
+
+    <!-- Document tags -->
+    <record id="documents_employyes_documents_certif" model="dms.tag">
+      <field name="name">Certificate</field>
+      <field name="category_id" ref="documents_employees_documents"/>
+    </record>
+
+    <record id="documents_employyes_documents_titulo" model="dms.tag">
+      <field name="name">Degree</field>
+      <field name="category_id" ref="documents_employees_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_auth" model="dms.tag">
+      <field name="name">Authorizations</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_cert" model="dms.tag">
+      <field name="name">Disability certificate</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_judi" model="dms.tag">
+      <field name="name">Judicial Summons</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_comuni" model="dms.tag">
+      <field name="name">Hiring and Drop Comunications</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_denun" model="dms.tag">
+      <field name="name">Accusation</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_depen" model="dms.tag">
+      <field name="name">Dependency</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_disc" model="dms.tag">
+      <field name="name">Discapacity</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_DNI" model="dms.tag">
+      <field name="name">DNI</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_personal_doc" model="dms.tag">
+      <field name="name">Personal Documentation</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_exp" model="dms.tag">
+      <field name="name">Dossier</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_form" model="dms.tag">
+      <field name="name">Education and Employment</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_inc" model="dms.tag">
+      <field name="name">IncapacitaTion</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_info" model="dms.tag">
+      <field name="name">Info</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_inform" model="dms.tag">
+      <field name="name">Reports</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_inf_pol" model="dms.tag">
+      <field name="name">Police Report</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_imv" model="dms.tag">
+      <field name="name">Minimal Income</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_ofau" model="dms.tag">
+      <field name="name">Services</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_preec" model="dms.tag">
+      <field name="name">Economic Benefits</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_sen" model="dms.tag">
+      <field name="name">Rulings</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_tarj" model="dms.tag">
+      <field name="name">Health Card</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_trans" model="dms.tag">
+      <field name="name">Transport</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_infmed" model="dms.tag">
+      <field name="name">Medical Report</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_analitica" model="dms.tag">
+      <field name="name">Analysis</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+
+    <record id="documents_residents_documents_trat" model="dms.tag">
+      <field name="name">Treatment</field>
+      <field name="category_id" ref="documents_residents_documents"/>
+    </record>
+  </data>
+</odoo>

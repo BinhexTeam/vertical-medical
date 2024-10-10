@@ -1,0 +1,33 @@
+<odoo>
+
+  <record model="ir.ui.view" id="create_treatment_form_view">
+    <field name="name">create.treatment.form.view</field>
+    <field name="model">rm.resident.treatment.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Create Treatment">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="resident_id"/>
+            <field name="date_begin"/>
+            <field name="date_end"/>
+            <field name="product_ids" widget="many2many_tags"/>
+          </group>
+          <footer>
+            <button name="create_treatment" string="Create" type="object" class="btn-primary"/>
+            <button string="Cancel" special="cancel" class="btn-secundary"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="action_create_treatment">
+    <field name="name">Create Treatment</field>
+    <field name="res_model">rm.resident.treatment.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="create_treatment_form_view"/>
+    <field name="context">{'default_resident_id': context.get('resident')}</field>
+    <field name="target">new</field>
+  </record>
+</odoo>

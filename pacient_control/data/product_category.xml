@@ -1,0 +1,11 @@
+<odoo>
+  <data noupdate="1">
+    <record id="med_prod_cat" model="product.category">
+      <field name="name">Medicines</field>
+    </record>
+
+    <record id="vac_prod_cat" model="product.category">
+      <field name="name">Vaccines</field>
+    </record>
+  </data>
+</odoo>

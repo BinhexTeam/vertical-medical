@@ -1,0 +1,24 @@
+<odoo>
+  <data noupdate="True">
+     <record id="email_template" model="mail.template">
+            <field name="name">Send Task by mail to followers</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">${(object.user_id.login)}</field>
+            <field name="email_to">${(object.employee_id.work_email)}</field>
+            <field name="subject">New Task: ${ctx['task']} for ${(object.partner_id.name)}</field>
+            <field name="body_html"><![CDATA[
+               <p>Dear ${(object.employee_id.name)},<br><br>
+                You have been asigned to a new task: ${(object.tasktype_id.name)} for ${(object.partner_id.name).<br></p>
+                Stage: ${(object.stage_id.name)}
+                Due date: ${(object.date_deadline)}
+                Priority: ${(object.priority)}
+                Best regards<br><br>
+                <a href="/web#id=${(object.id)}&active_id=7&model=project.task&view_type=form&cids=1&menu_id=${(object.env.ref('project.view_task_form2').id)}" 
+                style="background-color:#875A7B; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px;">
+                View Request
+                </a>]]></field>
+        </record>
+  </data>
+</odoo>
+

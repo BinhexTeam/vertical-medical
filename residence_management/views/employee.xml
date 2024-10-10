@@ -1,0 +1,86 @@
+<odoo>
+  <data>
+    <!-- <record id="search_filter_employee" model="ir.ui.view">
+      <field name="name">search.filter.employee</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_filter"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="residence_ids"/>
+        </xpath>
+      </field>
+    </record> -->
+
+
+    <record id="inherited_model_view_tree_employee" model="ir.ui.view">
+      <field name="name">inherited.model.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='parent_id']" position="after">
+          <field name="residence_ids"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherited_model_view_form_employee" model="ir.ui.view">
+      <field name="name">inherited.model.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='address_id']" position="replace">
+          <field name="address_id" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='address_id']" position="after">
+          <field name="residence_ids"/>
+        </xpath>
+        <xpath expr="//field[@name='work_email']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <xpath expr="//sheet/div[@name='button_box']" position="inside">
+          <button name="action_document_through_contact" string="Documents" type="object" class="oe_stat_button" icon="fa-file-text-o"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- OCULTAMOS YA QUE NO SE HACE REFERENCIA MÁS A ESTE MODULO -->
+    <!-- <record id="inherit_documents_hr" model="ir.ui.view">
+      <field name="name">hr.employee.view.form.inherit.doc</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="documents_hr.hr_employee_view_form"/>
+      <field name="arch" type="xml">
+          <button name="%(dms.file_action)d" position="attributes">
+            <attribute name="invisible">1</attribute>
+          </button>
+      </field>
+    </record> -->
+
+    <record id="inherited_model_view_kanban_employee" model="ir.ui.view">
+      <field name="name">inherited.model.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='job_title']" position="after">
+          <div>
+            <li t-if="record.residence_ids" class="o_text_overflow">
+              <strong>
+                <field name="residence_ids"/>
+              </strong>
+            </li>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- <record id="inherited_model_view_searchpanel_employee" model="ir.ui.view">
+      <field name="name">inherited.model.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_filter"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='department_id']" position="after">
+          <field name="residence_ids" icon="fa-users" enable_counters="1"/>
+        </xpath>
+      </field>
+    </record> -->
+  </data>
+</odoo>

@@ -1,0 +1,9 @@
+<odoo>
+  <data>
+    <record id="group_employee" model="res.groups">
+      <field name="name">Enable Employee Contact</field>
+      <field name="category_id" ref="base.module_category_hidden"/>
+      <field name="comment">Employee Contact</field>
+    </record>
+  </data>
+</odoo>

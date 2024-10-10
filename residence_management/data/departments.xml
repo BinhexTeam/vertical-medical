@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Creates differents departments for SERCA -->
+    <record id="department_int_soc" model="hr.department">
+        <field name="name">Social Integration</field>
+    </record>
+
+    <record id="department_care" model="hr.department">
+        <field name="name">Care</field>
+    </record>
+
+    <record id="department_anim" model="hr.department">
+        <field name="name">Animation</field>
+    </record>
+
+    <record id="department_cook" model="hr.department">
+        <field name="name">Cook</field>
+    </record>
+
+    <record id="department_psi" model="hr.department">
+        <field name="name">Psicology</field>
+    </record>
+
+    <record id="department_social" model="hr.department">
+        <field name="name">Social Labor</field>
+    </record>
+
+    <record id="department_nur" model="hr.department">
+        <field name="name">Nursing</field>
+    </record>
+
+    <record id="department_adm" model="hr.department">
+        <field name="name">Administration</field>
+    </record>
+
+    <record id="department_clean" model="hr.department">
+        <field name="name">Cleaning</field>
+    </record>
+
+    <record id="department_man" model="hr.department">
+        <field name="name">Management</field>
+    </record>
+
+    <record id="department_soc_edu" model="hr.department">
+        <field name="name">Social Education</field>
+    </record>
+
+    <record id="department_spee_th" model="hr.department">
+        <field name="name">Speech Therapy</field>
+    </record>
+</odoo>

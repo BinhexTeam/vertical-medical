@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record model="ir.actions.act_window" id="image_list_action">
+      <field name="name">Residence Images</field>
+      <field name="res_model">rm.image</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">Create Image</p>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="image_tree_view">
+      <field name="name">Image Tree</field>
+      <field name="model">rm.image</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="name"/>
+          <field name="image" widget="image" class="image-tree-style"/>
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>

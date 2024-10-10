@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="search_rooms" model="ir.ui.view">
+      <field name="name">Search Rooms</field>
+      <field name="model">rm.residence.room</field>
+      <field name="arch" type="xml">
+        <search string="Room">
+          <field name="name"/>
+          <field name="floor"/>
+          <field name="residence_id"/>
+          <separator/>
+          <filter string="Residences" name="residence" context="{'group_by': 'residence_id'}"/>
+          <separator/>
+          <filter string="Available" name="full" domain="[('full', '=', False)]"/>
+          <separator/>
+          <field name="capacity"/>
+          <field name="sq_meters"/>
+          <field name="bathroom"/>
+          <field name="full"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="room_list_action">
+      <field name="name">Rooms</field>
+      <field name="res_model">rm.residence.room</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="room_tree_view">
+      <field name="name">Room</field>
+      <field name="model">rm.residence.room</field>
+      <field name="arch" type="xml">
+        <tree editable="top" decoration-success="full == False" decoration-danger="full == True" decoration-bf="full == False">
+          <field name="full" invisible="1"/>
+          <field name="name"/>
+          <field name="floor"/>
+          <field name="capacity"/>
+          <field name="bathroom"/>
+          <field name="sq_meters"/>
+          <field name="resident_ids" widget="many2many_tags"/>
+          <field name="residence_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="room_form_view">
+      <field name="name">room.form.view</field>
+      <field name="model">rm.residence.room</field>
+      <field name="arch" type="xml">
+        <form string="Room Form">
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="floor"/>
+                <field name="capacity"/>
+              </group>
+              <group>
+                <field name="bathroom"/>
+                <field name="sq_meters"/>
+              </group>
+              <group>
+                <field name="residence_id"/>
+              </group>
+            </group>
+            <group>
+              <field name="resident_ids" widget="many2many_tags" context="{'form_view_ref': 'residence_management.view_pacient_form', 'tree_view_ref': 'residence_management.view_pacient_tree'}" domain="[('residence_id', '=', residence_id)]"></field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="room_kanban_view">
+      <field name="name">room.kanban.view</field>
+      <field name="model">rm.residence.room</field>
+      <field name="arch" type="xml">
+        <kanban class="o_res_partner_kanban" sample="1">
+          <field name="name"/>
+          <field name="floor"/>
+          <field name="capacity"/>
+          <field name="residence_id"/>
+          <field name="bathroom"/>
+          <field name="sq_meters"/>
+          <field name="resident_ids"/>
+          <field name="full"/>
+          <templates>
+            <t t-name="kanban-box">
+              <t t-if="!record.full.raw_value">
+                <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban" style="border: 1px solid #228B22">
+                  <!--<t t-if="!record.is_company.raw_value">
+                                    <t t-if="record.type.raw_value === 'delivery'" t-set="placeholder" t-value="'/base/static/img/truck.png'"/>
+                                    <t t-elif="record.type.raw_value === 'invoice'" t-set="placeholder" t-value="'/base/static/img/money.png'"/>
+                                    <t t-else="" t-set="placeholder" t-value="'/base/static/img/avatar_grey.png'"/>
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                    <div class="o_kanban_image d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="placeholder" t-value="'/base/static/img/company_image.png'"/>
+                                    <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('res.partner', 'image_128', record.id.raw_value, placeholder)})" role="img"/>
+                                </t>-->
+                  <div class="oe_kanban_details d-flex flex-column">
+                    <strong class="o_kanban_record_title oe_partner_heading">
+                      <field name="name"/>
+                    </strong>
+                    <span>
+                      <field name="residence_id"/>
+                    </span>
+                    <span>Floor: <field name="floor"/>
+                    </span>
+                    <span>Capacity: <field name="capacity"/>
+                    </span>
+                    <span>
+                      <field name="resident_ids" widget="many2many_tags"/>
+                    </span>
+                  </div>
+                </div>
+              </t>
+              <t t-if="record.full.raw_value">
+                <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban" style="border: 1px solid #ff0000">
+                  <!--<t t-if="!record.is_company.raw_value">
+                                    <t t-if="record.type.raw_value === 'delivery'" t-set="placeholder" t-value="'/base/static/img/truck.png'"/>
+                                    <t t-elif="record.type.raw_value === 'invoice'" t-set="placeholder" t-value="'/base/static/img/money.png'"/>
+                                    <t t-else="" t-set="placeholder" t-value="'/base/static/img/avatar_grey.png'"/>
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                    <div class="o_kanban_image d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.id.raw_value,  placeholder)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="placeholder" t-value="'/base/static/img/company_image.png'"/>
+                                    <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('res.partner', 'image_128', record.id.raw_value, placeholder)})" role="img"/>
+                                </t>-->
+                  <div class="oe_kanban_details d-flex flex-column">
+                    <strong class="o_kanban_record_title oe_partner_heading">
+                      <field name="name"/>
+                    </strong>
+                    <span>
+                      <field name="residence_id"/>
+                    </span>
+                    <span>Floor: <field name="floor"/>
+                    </span>
+                    <span>Capacity: <field name="capacity"/>
+                    </span>
+                    <span>
+                      <field name="resident_ids" widget="many2many_tags"/>
+                    </span>
+                  </div>
+                </div>
+              </t>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <menuitem id="residence_room" name="Rooms" parent="sub_residence_management_menu" sequence="2" action="room_list_action"/>
+  </data>
+</odoo>

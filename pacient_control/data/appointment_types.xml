@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <record id="app_sel_court" model="rm.project.task.app.selection">
+      <field name="name">Court</field>
+    </record>
+
+    <record id="app_sel_penitentiary_center" model="rm.project.task.app.selection">
+      <field name="name">Penitentiary Center</field>
+    </record>
+
+    <record id="app_sel_ed_ce" model="rm.project.task.app.selection">
+      <field name="name">Educational Center</field>
+    </record>
+
+    <record id="app_sel_he_ce" model="rm.project.task.app.selection">
+      <field name="name">Health Center</field>
+    </record>
+
+    <record id="app_sel_den" model="rm.project.task.app.selection">
+      <field name="name">Dentist</field>
+    </record>
+
+    <record id="app_sel_psy" model="rm.project.task.app.selection">
+      <field name="name">Psychiatry</field>
+    </record>
+
+    <record id="app_sel_drug" model="rm.project.task.app.selection">
+      <field name="name">Drug addiction care unit</field>
+    </record>
+
+    <record id="app_sel_assis_vio" model="rm.project.task.app.selection">
+      <field name="name">Assistance service for women victims of gender violence</field>
+    </record>
+
+    <record id="app_sel_drug" model="rm.project.task.app.selection">
+      <field name="name">Drug</field>
+    </record>
+
+    <record id="app_sel_soc_in" model="rm.project.task.app.selection">
+      <field name="name">Social Insurence</field>
+    </record>
+
+    <record id="app_sel_coun" model="rm.project.task.app.selection">
+      <field name="name">Counseling</field>
+    </record>
+
+    <record id="app_sel_disab" model="rm.project.task.app.selection">
+      <field name="name">Disability and Dependency Unit, IASS</field>
+    </record>
+
+    <record id="app_sel_pub_ad" model="rm.project.task.app.selection">
+      <field name="name">Public administrations</field>
+    </record>
+
+    <record id="app_sel_soc_lab" model="rm.project.task.app.selection">
+      <field name="name">Social and labor insertion centers</field>
+    </record>
+
+    <record id="app_sel_ent_found" model="rm.project.task.app.selection">
+      <field name="name">Entities and/or foundations</field>
+    </record>
+
+    <record id="app_sel_comp" model="rm.project.task.app.selection">
+      <field name="name">Companies</field>
+    </record>
+
+    <record id="app_sel_spec_emp" model="rm.project.task.app.selection">
+      <field name="name">Special employment centers</field>
+    </record>
+
+    <record id="app_sel_oc_ce" model="rm.project.task.app.selection">
+      <field name="name">Occupational centers</field>
+    </record>
+
+    <record id="app_sel_can_emp" model="rm.project.task.app.selection">
+      <field name="name">Canary Employment Service</field>
+    </record>
+  </data>
+</odoo>

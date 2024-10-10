@@ -1,0 +1,450 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pacient_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20211005\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-11 10:25+0000\n"
+"PO-Revision-Date: 2022-08-11 11:26+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "<span class=\"o_stat_text\">Documents</span>"
+msgstr "<span class=\"o_stat_text\">Documentos</span>"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Accounts"
+msgstr "Cuentas"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Address"
+msgstr "Dirección"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__age
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__age
+msgid "Age"
+msgstr "Edad"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "CSV Number"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Choose a residence before assigning a date of admission"
+msgstr "Elija una residencia antes de introducir la fecha de ingreso."
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "City"
+msgstr "Lugar"
+
+#. module: pacient_management
+#: model:ir.model,name:pacient_management.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Country"
+msgstr "Pais"
+
+#. module: pacient_management
+#: model_terms:ir.actions.act_window,help:pacient_management.family_list_action
+msgid "Create Family"
+msgstr "Crear Familiar"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__identification_type__dni
+msgid "DNI"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Date of Admission"
+msgstr "Fecha de Ingreso"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_documents_document__display_name
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__display_name
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__marital_status__divorced
+msgid "Divorced"
+msgstr "Divorciado"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#: model:ir.model,name:pacient_management.model_documents_document
+#, python-format
+msgid "Document"
+msgstr "Documento"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__document_ids
+msgid "Documento"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Documents"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__partner_id
+msgid "Empresa"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__marital_status
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__marital_status
+msgid "Estado Marital"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__family_partner
+msgid "Familiar"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__is_family
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__is_family
+msgid "Familiar de residente"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.actions.act_window,name:pacient_management.family_list_action
+#: model:ir.ui.menu,name:pacient_management.resident_menu_contact
+msgid "Family"
+msgstr "Familia"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__family_contacts
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__family_contacts
+msgid "Family Contacts"
+msgstr "Contactos Familiares"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__date_ingress
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__date_ingress
+msgid "Fecha de Ingreso"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__gender__fe
+msgid "Female"
+msgstr "Mujer"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Gender"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__gender
+msgid "Género"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Health Card"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_documents_document__id
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__id
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__id
+msgid "ID"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__identification
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__identification
+msgid "Identificación"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Identification"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Identification Type"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__marital_status__judicially_separated
+msgid "Judicially Separated"
+msgstr "Judicialmente Separado"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_documents_document____last_update
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner____last_update
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__gender__ma
+msgid "Male"
+msgstr "Hombre"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Marital Status"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__marital_status__married
+msgid "Married"
+msgstr "Casado"
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__identification_type__nie
+msgid "NIE"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+#, python-format
+msgid "Name"
+msgstr "Nombre"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__name
+msgid "Nombre"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__csv_number
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__csv_number
+msgid "Número de CSV"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__pension_account_number
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__pension_account_number
+msgid "Número de cuenta de pensión"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__responsible_account_number
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__responsible_account_number
+msgid "Número de cuenta del responsable"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__social_security_number
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__social_security_number
+msgid "Número de la seguridad social"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__observations
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__observations
+msgid "Observaciones"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Observations"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__gender__ot
+msgid "Other"
+msgstr "Otro"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Partner"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__identification_type__passport
+msgid "Passport"
+msgstr "Pasaporte"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Pension Account Number"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Phone"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__relation_name
+#, python-format
+msgid "Relation"
+msgstr "Parentesco"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__relationship_ids
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__relationship_ids
+msgid "Relationship"
+msgstr "Relaciones"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+#, python-format
+msgid "Relative"
+msgstr "Familiar"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/docs.py:0
+#, python-format
+msgid "Resident"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Resident Familiar"
+msgstr ""
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Resident Info"
+msgstr "Información del residente"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_documents_document__resident_id_doc
+msgid "Residente"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Residents"
+msgstr ""
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Responsible Account Number"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__marital_status__single
+msgid "Single"
+msgstr "Soltero"
+
+#. module: pacient_management
+#: code:addons/pacient_management/models/res_partner.py:0
+#, python-format
+msgid "Social Security Number"
+msgstr ""
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "State"
+msgstr "Ciudad"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Street..."
+msgstr "Calle..."
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__health_card
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__health_card
+msgid "Tarjeta Sanitaria"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_rm_resident_relationship__family_partner_num
+msgid "Teléfono"
+msgstr ""
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_res_partner__identification_type
+#: model:ir.model.fields,field_description:pacient_management.field_res_users__identification_type
+msgid "Tipo de Identificación"
+msgstr ""
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "Title"
+msgstr "Título"
+
+#. module: pacient_management
+#: model:ir.model.fields.selection,name:pacient_management.selection__res_partner__marital_status__widower
+msgid "Widower"
+msgstr "Viudo"
+
+#. module: pacient_management
+#: model:ir.model.fields,field_description:pacient_management.field_documents_document__directory_id
+msgid "Workspace"
+msgstr "Espacio de trabajo"
+
+#. module: pacient_management
+#: model_terms:ir.ui.view,arch_db:pacient_management.inherit_pacient_form_view
+msgid "ZIP"
+msgstr "Código Postal"
+
+#. module: pacient_management
+#: model:ir.model,name:pacient_management.model_rm_resident_relationship
+msgid "rm.resident.relationship"
+msgstr ""

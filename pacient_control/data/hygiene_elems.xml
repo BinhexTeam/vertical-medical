@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <record id="hygiene_elem_shower" model="rm.resident.control.hygiene.element.name">
+      <field name="name">Shower</field>
+    </record>
+
+    <record id="hygiene_elem_shave" model="rm.resident.control.hygiene.element.name">
+        <field name="name">Shaving</field>
+    </record>
+
+    <record id="hygiene_elem_teeth" model="rm.resident.control.hygiene.element.name">
+        <field name="name">Teeth</field>
+    </record>
+  </data>
+</odoo>

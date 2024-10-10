@@ -1,0 +1,147 @@
+<odoo>
+  <data>
+    <record id="inherit_search_pacient" model="ir.ui.view">
+      <field name="name">inherit.search.pacient</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="residence_management.search_pacients"/>
+      <field name="arch" type="xml">
+        <field name="residence_id" position="after">
+          <field name="age"/>
+          <field name="gender"/>
+          <field name="identification"/>
+          <field name="date_ingress"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="inherit_pacient_tree_view" model="ir.ui.view">
+      <field name="name">inherit.pacient.tree.view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="residence_management.view_pacient_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='residence_id']" position="before">
+          <field name="age"/>
+          <field name="identification_type"/>
+          <field name="identification"/>
+          <field name="gender" optional="hide"/>
+          <field name="date_ingress" optional="hide"/>
+          <field name="marital_status" optional="hide"/>
+          <field name="relationship_ids" widget="many2many_tags" optional="hide"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_pacient_form_view" model="ir.ui.view">
+      <field name="name">inherit.pacient.form.view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="residence_management.view_pacient_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form/sheet" position="replace">
+          <sheet>
+             <div class="oe_button_box" name="button_box">
+            <button name="action_view_dms" type="object" class="oe_stat_button" icon="fa-file-text-o">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_value">
+                  <field name="document_count"/>
+                </span>
+                <span class="o_stat_text">Documents</span>
+              </div>
+            </button>
+          </div>
+          <field name="image_1920" widget="image" class="oe_avatar"/>
+          <div class="oe_title">
+            <h1>
+              <field name="title" class="oe_inline" placeholder="Title"/>
+            </h1>
+            <h1>
+              <field name="name" default_focus="1" placeholder="Name" class="oe_inline" required="1"/>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="identification_type"/>
+              <field name="identification"/>
+              <field name="gender"/>
+              <field name="type" readonly="context.get('default_type')"/>
+            </group>
+
+            <group>
+              <label for="street" string="Address"/>
+              <div class="o_address_format">
+                <field name="street" placeholder="Street..." class="o_address_street"/>
+                <field name="city" placeholder="City" class="o_address_city"/>
+                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' context="{'country_id': country_id, 'zip': zip}"/>
+                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+              </div>
+              <field name="date"/>
+              <field name="age"/>
+              <field name="marital_status"/>
+            </group>
+          </group>
+          <notebook>
+            <page string="Resident Info">
+              <group>
+                <group>
+                  <field name="residence_id" readonly="context.get('default_residence_id')"/>
+                  <field name="room_res_id" domain="[('residence_id', '=', residence_id)]" context="{'residence_': residence_id}" attrs="{'invisible': [('residence_id', '=', False)]}"/>
+                  <field name="date_ingress"/>
+                </group>
+                <group>
+                  <field name="observations"/>
+                </group>
+              </group>
+            </page>
+            <page string="Contacts">
+              <field name="relationship_ids">
+                <tree editable="top">
+                  <field name="relation_name" required="1"/>
+                  <field name="family_partner" required="1" context="{'default_is_family': True}" domain="[('is_family', '=', True)]" string="Relative"/>
+                  <field name="family_partner_num" widget="phone"/>
+                </tree>
+              </field>
+            </page>
+            <page name="account" string="Accounts">
+              <group>
+                <group>
+                  <field name="social_security_number"/>
+                  <field name="health_card"/>
+                  <field name="csv_number"/>
+                </group>
+                <group>
+                  <field name="pension_account_number"/>
+                  <field name="responsible_account_number"/>
+                </group>
+              </group>
+            </page>
+          </notebook>
+          </sheet>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_pacient_kanban_view" model="ir.ui.view">
+      <field name="name">inherit.pacient.kanban.view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="residence_management.view_pacient_kanban"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[hasclass('oe_kanban_partner_categories')]" position="before">
+          <span>
+            <field name="identification_type"/>
+:            <strong>
+              <field name="identification"/>
+            </strong>
+          </span>
+          <div class="o_kanban_tags_section oe_kanban_partner_categories">
+            <span>
+              <field name="relationship_ids" widget="many2many_tags"/>
+            </span>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <!--<menuitem id="main_residence_management_menu" name="Resident Management" web_icon="pacient_management,static/description/odoo_icon.png"/>
+    <menuitem id="resident_menu" name="Residents" parent="main_residence_management_menu" action="pacient_list_action"/>-->
+  </data>
+</odoo>

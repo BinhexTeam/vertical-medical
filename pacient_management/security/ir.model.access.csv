@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rm_resident_relationship,rm.resident.relationship,model_rm_resident_relationship,residence_management.group_residence_employee,1,0,1,0
+rm_resident_relationship,rm.resident.relationship,model_rm_resident_relationship,residence_management.group_residence_manager,1,0,1,0
+rm_resident_relationship,rm.resident.relationship,model_rm_resident_relationship,residence_management.group_residence_admin,1,1,1,1
+rm_resident_relationship,rm.resident.relationship,model_rm_resident_relationship,,1,0,0,0
+rm_resident_relationship_manager,rm.resident.relationship.manager,model_rm_resident_relationship,residence_management.group_residence_admin,1,1,1,1
