@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rm_resident_control_hygiene_element,rm.resident.control.hygiene.element,model_rm_resident_control_hygiene_element,base.group_user,1,1,1,1
+rm_resident_medical_info,rm.resident.medical.info,model_rm_resident_medical_info,base.group_user,1,1,1,1
+rm_resident_control_hygiene_element_name,rm.resident.control.hygiene.element.name,model_rm_resident_control_hygiene_element_name,base.group_user,1,1,1,1
+rm_project_task_app_selection,rm.project.task.app.selection,model_rm_project_task_app_selection,base.group_user,1,1,1,1
+rm_resident_treatment,rm.resident.treatment,model_rm_resident_treatment,base.group_user,1,0,0,0
+project_task_tasktype,project.task.tasktype,model_project_task_tasktype,base.group_user,1,1,1,1
+rm_resident_treatment_wizard,rm.resident.treatment.wizard,model_rm_resident_treatment_wizard,base.group_user,1,1,1,1
+rm_resident_treatment_manager,rm.resident.treatment.manager,model_rm_resident_treatment,medical_residence_base.group_residence_admin,1,1,1,1
