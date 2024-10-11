@@ -63,7 +63,7 @@ class Residence(models.Model):
     def validate_mail(self):
         if self.email:
             match = re.match(
-                "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$",
+                "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$",
                 self.email,
             )
             if match == None:
@@ -83,18 +83,20 @@ class Residence(models.Model):
                     self.env.ref("medical_residence_base.group_residence_admin").id,
                 ),
             ]
-        )
+        ).mapped("partner_id")
         # Look for project with same name
         project = self.env["project.project"].search(
             ["&", ("name", "=", res.name), ("residence_id", "=", False)], limit=1
         )
         # If project exists asign it to residence
-        if project.name == False:
+        if not project:
             project = self.env["project.project"].create(
                 {
                     "name": res.name,
+                    "allow_timesheets": True,
+                    "company_id": self.env.company_id.id,
                     "privacy_visibility": "followers",
-                    "allowed_internal_user_ids": [(6, 0, employee_users.ids)]
+                    "message_partner_ids": [(6, 0, employee_users.ids)]
                     if employee_users
                     else False,
                 }
