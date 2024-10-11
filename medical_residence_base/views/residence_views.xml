@@ -100,11 +100,6 @@
                 <span class="o_stat_text">Residents</span>
               </div>
             </button>
-            <button name="action_see_journals" type="object" groups="medical_residence_base.group_residence_manager" class="oe_stat_button" icon="fa-credit-card">
-              <div class="o_field_widget o_stat_info">
-                <span class="o_stat_text">Journals</span>
-              </div>
-            </button>
           </div>
           <field name="image" widget='image' class="oe_avatar"/>
           <div class="oe_title">

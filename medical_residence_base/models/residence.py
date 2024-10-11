@@ -93,9 +93,9 @@ class Residence(models.Model):
             project = self.env["project.project"].create(
                 {
                     "name": res.name,
-                    "allow_timesheets": True,
-                    "company_id": self.env.company_id.id,
+                    "company_id": self.env.company.id,
                     "privacy_visibility": "followers",
+                    "user_id": self.env.user.id,
                     "message_partner_ids": [(6, 0, employee_users.ids)]
                     if employee_users
                     else False,
@@ -104,7 +104,12 @@ class Residence(models.Model):
         res.project_ids = [(6, 0, [project.id])]
 
         # Add stages to the project
-        stages = self.env["project.task.type"].search([])
+        stages = self.env["project.task.type"].search([('id', "in", 
+            [self.env.ref("medical_residence_base.project_stage_todo").id,
+            self.env.ref("medical_residence_base.project_stage_progress").id,
+            self.env.ref("medical_residence_base.project_stage_done").id
+            ]
+        )])
         for stage in stages:
             stage.project_ids = [(4, project.id)]
 
@@ -191,19 +196,6 @@ class Residence(models.Model):
             "context": "{'default_type': 'contact', 'default_residence_id': "
             + str(self.id)
             + "}",
-        }
-
-    def action_see_journals(self):
-        self.ensure_one()
-        return {
-            "type": "ir.actions.act_window",
-            "name": _("Journals"),
-            "view_mode": "tree,form",
-            "res_model": "account.journal",
-            "domain": [("residence_id", "=", self.id)],
-            "context": "{'default_residence_id': "
-            + str(self.id)
-            + ", 'default_type': 'bank'}",
         }
 
     def action_see_project(self):
