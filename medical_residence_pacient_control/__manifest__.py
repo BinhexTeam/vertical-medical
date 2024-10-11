@@ -32,4 +32,5 @@
         "views/rm_resident_views.xml",
     ],
     "images": ["static/description/icon.png"],
+    "mantainer": ["szalatyzuzanna"],
 }

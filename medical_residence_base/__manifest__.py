@@ -53,4 +53,5 @@
             "medical_residence_base/static/src/scss/image.scss"
         ]
     },
+    "mantainer": ["szalatyzuzanna"],
 }
