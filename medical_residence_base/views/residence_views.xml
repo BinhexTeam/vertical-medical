@@ -85,7 +85,7 @@
       <form string="Residence Form">
         <sheet>
           <div class="oe_button_box" name="button_box">
-          <button name="helpdesk_mgmt.helpdesk_ticket_dashboard_action" type="action" class="oe_stat_button" icon="fa-life-ring">
+          <button name="action_see_tickets" type="object" class="oe_stat_button" icon="fa-life-ring">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Incidencias</span>
               </div>
@@ -98,6 +98,11 @@
             <button name="action_see_residents" type="object" class="oe_stat_button" icon="fa-users">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Residents</span>
+              </div>
+            </button>
+            <button name="action_see_projects" type="object" class="oe_stat_button" icon="fa-puzzle-piece">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_text">Projects</span>
               </div>
             </button>
           </div>

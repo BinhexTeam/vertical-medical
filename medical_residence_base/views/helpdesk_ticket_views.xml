@@ -1,27 +1,12 @@
 <odoo>
   <data>
-    <record id="inherit_helpdesk_ticket_type" model="ir.ui.view">
-      <field name="name">inherit.helpdesk.ticket.type</field>
-      <field name="model">helpdesk.ticket.type</field>
-      <field name="inherit_id" ref="helpdesk_type.helpdesk_ticket_type_tree"/>
-      <field name="arch" type="xml">
-        <xpath expr="//field[@name='name']" position="after">
-          <field name="helpdesk_team_ids" widget="many2many_tags"/>
-        </xpath>
-      </field>
-    </record>
-
     <record id="inherit_helpdesk_ticket_domain" model="ir.ui.view">
       <field name="name">inherit.helpdesk.ticket.domain</field>
       <field name="model">helpdesk.ticket</field>
       <field name="inherit_id" ref="helpdesk_type.view_helpdesk_ticket_form_type"/>
       <field name="arch" type="xml">
-        <xpath expr="//field[@name='type_id']" position="replace">
-          <field name="type_id" domain="[('helpdesk_team_ids', 'in', team_id)]"/>
+        <xpath expr="//field[@name='type_id']" position="after">
           <field name="residence_id"/>
-        </xpath>
-        <xpath expr="//field[@name='partner_id']" position="replace">
-          <field name="partner_id"/>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="attributes">
           <attribute name="string">Contact</attribute>

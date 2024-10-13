@@ -4,6 +4,8 @@ from odoo import models, fields, api, _
 import re
 from odoo.exceptions import ValidationError
 import datetime
+import logging
+_logger = logging.getLogger(__name__)
 
 class Residence(models.Model):
     _name = "rm.residence"
@@ -83,7 +85,8 @@ class Residence(models.Model):
                     self.env.ref("medical_residence_base.group_residence_admin").id,
                 ),
             ]
-        ).mapped("partner_id")
+        )
+        employee_partners = employee_users.mapped("partner_id")
         # Look for project with same name
         project = self.env["project.project"].search(
             ["&", ("name", "=", res.name), ("residence_id", "=", False)], limit=1
@@ -96,13 +99,33 @@ class Residence(models.Model):
                     "company_id": self.env.company.id,
                     "privacy_visibility": "followers",
                     "user_id": self.env.user.id,
-                    "message_partner_ids": [(6, 0, employee_users.ids)]
-                    if employee_users
+                    "message_partner_ids": [(6, 0, employee_partners.ids)]
+                    if employee_partners
                     else False,
                 }
             )
         res.project_ids = [(6, 0, [project.id])]
 
+        helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
+            ["&", ("name", "=", res.name), ("default_project_id", "=", project.id)], limit=1
+        )
+        _logger.info(str(helpdesk_team_id))
+        if not helpdesk_team_id:
+            _logger.info("TEAM "+str(employee_users))
+            helpdesk_team_id = self.env["helpdesk.ticket.team"].create(
+                {
+                    "name": res.name,
+                    "default_project_id": project.id,
+                    "residence_id": res.id,
+                    "user_ids": [(6, 0, employee_users.ids)]
+                    if employee_users
+                    else False,
+                }
+            )
+        else:
+            helpdesk_team_id.write({
+                "user_ids": [(6, 0, employee_users.ids)]
+            })
         # Add stages to the project
         stages = self.env["project.task.type"].search([('id', "in", 
             [self.env.ref("medical_residence_base.project_stage_todo").id,
@@ -144,6 +167,8 @@ class Residence(models.Model):
 
     def write(self, vals):
         res = super(Residence, self).write(vals)
+        _logger.info("HOLA res "+str(res))
+        _logger.info("HOLA self "+str(self))
         if vals.get("name"):
             # Change project and folder name
             [x.write({"name": vals["name"]}) for x in self.project_ids]
@@ -165,6 +190,25 @@ class Residence(models.Model):
                     employees_folder = self.env["dms.directory"].create(
                         {"name": vals["name"], "parent_id": parent_E}
                     )
+        if vals.get('employee_ids'):
+            helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
+                [("name", "=", self.name)], limit=1
+            )
+            employee_users = self.env["res.users"].search(
+                [
+                    "|",
+                    ("employee_id", "in", self.employee_ids.ids),
+                    (
+                        "groups_id",
+                        "in",
+                        self.env.ref("medical_residence_base.group_residence_admin").id,
+                    ),
+                ]
+            )
+            helpdesk_team_id.write({
+                "user_ids": [(6, 0, employee_users.ids)]
+            })
+
         return res
 
     def action_see_expenses(self):
@@ -178,6 +222,26 @@ class Residence(models.Model):
             "context": "{'default_residence_id': "
             + str(self.id)
             + ", 'group_by': 'department_id'}",
+        }
+
+    def action_see_projects(self):
+        self.ensure_one()
+        return {
+            "name": _("Projects"),
+            "res_model": "project.project",
+            "type": "ir.actions.act_window",
+            "view_mode": "kanban,tree,form",
+            "domain": [("id", 'in', self.project_ids.ids)]
+        }
+
+    def action_see_tickets(self):
+        self.ensure_one()
+        return {
+            "name": _("Tickets"),
+            "res_model": "helpdesk.ticket",
+            "type": "ir.actions.act_window",
+            "view_mode": "kanban,tree,form",
+            "domain": [("residence_id", '=', self.id)]
         }
 
     def action_see_residents(self):

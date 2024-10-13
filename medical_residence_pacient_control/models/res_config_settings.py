@@ -20,10 +20,10 @@ class Company(models.Model):
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = ["res.config.settings"]
+    _inherit = "res.config.settings"
     group_categories_1 = fields.Boolean(
         string=_("Categories"),
-        implied_group="pacient_control.group_categories_1",
+        implied_group="medical_residence_pacient_control.group_categories_1",
         default=True,
     )
     medicine_category_ids = fields.Many2many(

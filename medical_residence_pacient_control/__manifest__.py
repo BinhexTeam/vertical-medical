@@ -11,7 +11,7 @@
     "category": "Medical",
     "version": "16.0.1.0",
     # any module necessary for this one to work correctly
-    "depends": ["medical_residence_pacient", "calendar", "medical_residence_base"],
+    "depends": ["medical_residence_pacient", "calendar", "medical_residence_base","product"],
     # always loaded
     "data": [
         # Data
