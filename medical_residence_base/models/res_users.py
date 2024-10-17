@@ -19,10 +19,11 @@ class ResUsers(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if self.has_group("medical_residence_base.group_residence_admin"):
-            # If user has admin group add him to all residences project (if something is modified)
-            residences = self.env["rm.residence"].search([])
-            for resi in residences:
-                for project in resi.project_ids:
-                    project.write({"allowed_internal_user_ids": [(4, self.id)]})
+        for record in self:
+            if record.has_group("medical_residence_base.group_residence_admin"):
+                # If user has admin group add him to all residences project (if something is modified)
+                residences = record.env["rm.residence"].search([])
+                for resi in residences:
+                    for project in resi.project_ids:
+                        project.write({"allowed_internal_user_ids": [(4, record.id)]})
         return res
