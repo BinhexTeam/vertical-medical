@@ -11,5 +11,3 @@
 * Un residente tiene mucha informacion medica (Enfermedad y Observacion)
 * Un residente muchos tratamientos medico (Nombre del tratamiento, medicina, fecha de inicio, fecha final, activo, ...)
 * Un tratamiento medico tiene muchas medicinas
-
-![](./static/description/SERCA.png)
