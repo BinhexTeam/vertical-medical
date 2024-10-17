@@ -14,6 +14,3 @@
 * Una gasto tiene un departamento**
 * Una residencia tiene muchos diarios (Para asignarselo a los gastos)
 
-![](./static/description/SERCA.png)
-
-** La relacion (flecha) Gastos - Departamento en el diagrama es al reves.
