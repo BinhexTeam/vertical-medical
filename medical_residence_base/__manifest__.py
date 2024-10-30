@@ -24,6 +24,7 @@
         "project",
         "helpdesk_mgmt",
         "helpdesk_type",
+        "document_knowledge"
     ],
     # always loaded
     "data": [

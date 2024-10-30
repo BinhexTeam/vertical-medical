@@ -163,6 +163,14 @@ class Residence(models.Model):
                         'is_root_directory': False
                     }
                 )
+        page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
+        _logger.info("HOLA page_id "+str(page_id))
+        if not page_id: 
+            page_id = self.env['document.page'].sudo().create({
+                'name': res.name,
+                'type': 'category',
+            })
+            _logger.info("HOLA 2 page_id "+str(page_id))
         return res
 
     def write(self, vals):
@@ -269,7 +277,37 @@ class Residence(models.Model):
             "name": _("Activities"),
             "view_mode": "kanban,form",
             "res_model": "project.task",
-            "domain": [("project_id.name", "=", self.name)],
+            "domain": [
+                ("project_id.name", "=", self.name),
+                ("tasktype_id", "!=", self.env.ref("medical_residence_pacient_control.T_type").id)
+            ],
+            "context": "{'residence': True, 'default_project_id': "
+            + str(self.sudo().project_ids[0].id)
+            + "}",
+        }
+    def action_see_docs(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Folders"),
+            "view_mode": "kanban,form",
+            "res_model": "dms.directory",
+            "domain": [
+                ("name", "=", self.name)
+            ],
+        }
+    #action_see_docs
+    def action_see_treatments(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Activities"),
+            "view_mode": "kanban,form",
+            "res_model": "project.task",
+            "domain": [
+                ("project_id.name", "=", self.name),
+                ("tasktype_id", "=", self.env.ref("medical_residence_pacient_control.T_type").id)
+            ],
             "context": "{'residence': True, 'default_project_id': "
             + str(self.sudo().project_ids[0].id)
             + "}",

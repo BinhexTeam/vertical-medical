@@ -8,7 +8,6 @@ class HelpdesktTeam(models.Model):
     _inherit = "helpdesk.ticket.team"
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))
 
-
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))

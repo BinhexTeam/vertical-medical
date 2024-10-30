@@ -85,7 +85,12 @@
       <form string="Residence Form">
         <sheet>
           <div class="oe_button_box" name="button_box">
-          <button name="action_see_tickets" type="object" class="oe_stat_button" icon="fa-life-ring">
+          <button name="action_see_docs" type="object" class="oe_stat_button" icon="fa-folder">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_text">Documents</span>
+              </div>
+            </button>
+            <button name="action_see_tickets" type="object" class="oe_stat_button" icon="fa-life-ring">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Incidencias</span>
               </div>
@@ -93,6 +98,11 @@
             <button name="action_see_project" type="object" class="oe_stat_button" icon="fa-check-square-o">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Activities</span>
+              </div>
+            </button>
+            <button name="action_see_treatments" type="object" class="oe_stat_button" icon="fa-stethoscope">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_text">Treatments</span>
               </div>
             </button>
             <button name="action_see_residents" type="object" class="oe_stat_button" icon="fa-users">
