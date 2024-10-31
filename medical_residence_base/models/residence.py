@@ -287,6 +287,7 @@ class Residence(models.Model):
         }
     def action_see_docs(self):
         self.ensure_one()
+        directory_id = self.env["dms.directory"].search([("name", "=", self.name),('parent_id', '=', self.env.ref("medical_residence_base.documents_residents_folder").id)])
         return {
             "type": "ir.actions.act_window",
             "name": _("Folders"),
@@ -295,6 +296,10 @@ class Residence(models.Model):
             "domain": [
                 ("name", "=", self.name)
             ],
+            "context": {
+                "default_parent_id": directory_id.id,
+                "searchpanel_default_parent_id": directory_id.id,
+            },
         }
     #action_see_docs
     def action_see_treatments(self):
