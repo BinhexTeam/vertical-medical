@@ -27,6 +27,7 @@ class Resident(models.Model):
     def reset_room(self):
         self.room_res_id = False
 
+
     def write(self, vals):
         if vals.get("room_res_id"):
             # Check new room capacity is not exceeded
@@ -87,3 +88,5 @@ class Resident(models.Model):
                 "searchpanel_default_directory_id": directory_id,
             },
         }
+    
+    

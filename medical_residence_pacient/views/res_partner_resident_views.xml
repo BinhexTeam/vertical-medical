@@ -20,6 +20,7 @@
     <field name="arch" type="xml">
       <xpath expr="//field[@name='residence_id']" position="before">
         <field name="age"/>
+        <field name="phone" widget="phone"/>
         <field name="identification_type"/>
         <field name="identification"/>
         <field name="gender" optional="hide"/>
@@ -73,6 +74,7 @@
               <field name="zip" placeholder="ZIP" class="o_address_zip"/>
               <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
             </div>
+            <field name="phone" widget="phone"/>
             <field name="date"/>
             <field name="age"/>
             <field name="marital_status"/>

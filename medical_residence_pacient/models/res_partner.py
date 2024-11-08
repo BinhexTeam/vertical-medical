@@ -20,9 +20,10 @@ class Resident(models.Model):
                                  track_visibility='onchange'
                                  )
     gender = fields.Selection(
-        [("ma", "Male"), ("fe", "Female"), ("ot", "Other")],
+        selection=[("ma", "Male"), ("fe", "Female"), ("ot", "Other")],
         string=_("Gender"),
         required=True,
+        default='ma',
         track_visibility='onchange'
     )
     marital_status = fields.Selection(
