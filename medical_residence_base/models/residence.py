@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 import re
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 import datetime
 import logging
 _logger = logging.getLogger(__name__)
@@ -12,6 +13,7 @@ class Residence(models.Model):
     _description = "Residence"
 
     directory_ids = fields.One2many("dms.directory", "residence_id")
+    
     # Fields
     name = fields.Char(string=_("Name"), required=True)
     description = fields.Text(string=_("Description"))
@@ -147,12 +149,19 @@ class Residence(models.Model):
             ).id
             # Assign folders for residence
             if len(directory_ids) == 0:
+                group = self.env['dms.access.group'].create([{
+                    'name' : res.name,
+                    'perm_create' : True,
+                    'perm_write' : True,
+                    'perm_unlink': True
+                }])
                 residents_folder = self.env["dms.directory"].create(
                     {
                         "name": res.name,
                         "parent_id": parent_R,
                         "residence_id": res.id,
-                        'is_root_directory': False
+                        'is_root_directory': False,
+                        'group_ids': [(Command.link(group.id))]
                     }
                 )
                 employees_folder = self.env["dms.directory"].create(
@@ -160,9 +169,10 @@ class Residence(models.Model):
                         "name": res.name,
                         "parent_id": parent_E,
                         "residence_id": res.id,
-                        'is_root_directory': False
+                        'is_root_directory': False,
+                        'group_ids': [(Command.link(group.id))]
                     }
-                )
+                )     
         page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
         _logger.info("HOLA page_id "+str(page_id))
         if not page_id: 
@@ -293,9 +303,7 @@ class Residence(models.Model):
             "name": _("Folders"),
             "view_mode": "kanban,form",
             "res_model": "dms.directory",
-            "domain": [
-                ("name", "=", self.name)
-            ],
+            "domain": [('parent_id', '=', directory_id.id)],
             "context": {
                 "default_parent_id": directory_id.id,
                 "searchpanel_default_parent_id": directory_id.id,

@@ -42,6 +42,7 @@
         <field name="date"/>
         <field name="residence_id"/>
         <field name="room_res_id"/>
+        <field name="phone" widget="phone"/>
       </tree>
     </field>
   </record>
@@ -150,7 +151,7 @@
   <record model="ir.actions.act_window" id="pacient_list_action">
     <field name="name">Residents</field>
     <field name="res_model">res.partner</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">kanban,tree,form</field>
     <field name="view_ids" eval="[(5, 0, 0),
           (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_pacient_kanban')}),
           (0, 0, {'view_mode': 'tree', 'view_id': ref('view_pacient_tree')}),
