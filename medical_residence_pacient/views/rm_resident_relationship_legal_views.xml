@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_rm_relationship_legal_tree" model="ir.ui.view">
+            <field name="name">rm.relationship.tree</field>
+            <field name="model">rm.resident.relationship.legal</field>
+            <field name="arch" type="xml">
+                <tree string="Fields" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_show_relationship_legal" model="ir.actions.act_window">
+            <field name="name">Relation Legal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rm.resident.relationship.legal</field>
+            <field name="view_id" ref="view_rm_relationship_legal_tree"/>
+        </record>
+        <menuitem id="control_relation_legal_menu" 
+        name="Relation Legal" 
+        parent="medical_residence_base.configuration_menu" 
+        sequence="4" 
+        action="action_show_relationship_legal" 
+        groups="base.group_system"
+        />
+    </data>
+</odoo>

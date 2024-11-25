@@ -12,19 +12,19 @@ class Resident(models.Model):
         string=_("Identification Type"),
         default="dni",
         required=True,
-        track_visibility='onchange'
+        tracking=True
     )
     identification = fields.Char(string=_("Identification"), 
                                  required=True, 
                                  size=9,
-                                 track_visibility='onchange'
+                                 tracking=True
                                  )
     gender = fields.Selection(
         selection=[("ma", "Male"), ("fe", "Female"), ("ot", "Other")],
         string=_("Gender"),
         required=True,
         default='ma',
-        track_visibility='onchange'
+        tracking=True
     )
     marital_status = fields.Selection(
         [
@@ -35,24 +35,24 @@ class Resident(models.Model):
             ("widower", "Widower"),
         ],
         string=_("Marital Status"),
-        track_visibility='onchange'
+        tracking=True
     )
 
     date_ingress = fields.Date(string=_("Date of Admission"),
-                               track_visibility='onchange')
+                               tracking=True)
 
     age = fields.Integer(string="Age", 
                         compute="compute_age",
-                        track_visibility='onchange'
+                        tracking=True
                          )
 
     # Contacts
-    is_family = fields.Boolean(string=_("Resident Familiar"), track_visibility='onchange')
+    is_family = fields.Boolean(string=_("Resident Familiar"), tracking=True)
     relationship_ids = fields.One2many(
         "rm.resident.relationship", 
         "partner_id", 
         string="Relationship",
-        track_visibility='onchange'
+        tracking=True
     )
     family_contacts = fields.Many2many(
         "res.partner",
@@ -60,22 +60,22 @@ class Resident(models.Model):
         "fam_contact1",
         "fam_contact2",
         string="Family Contacts",
-        track_visibility='onchange'
+        tracking=True
     )
-    observations = fields.Text(string=_("Observations"), track_visibility='onchange')
+    observations = fields.Text(string=_("Observations"), tracking=True)
     # Documents
-    document_ids = fields.One2many("dms.file", "resident_id_doc", string=_("Document"), track_visibility='onchange')
+    document_ids = fields.One2many("dms.file", "resident_id_doc", string=_("Document"), tracking=True)
 
     # Account
-    health_card = fields.Char(string=_("Health Card"),track_visibility='onchange')
+    health_card = fields.Char(string=_("Health Card"),tracking=True)
     social_security_number = fields.Char(string=_("Social Security Number"),
-                                         track_visibility='onchange')
+                                         tracking=True)
     csv_number = fields.Char(string=_("CSV Number"),
-                             track_visibility='onchange')
+                             tracking=True)
     pension_account_number = fields.Char(string=_("Pension Account Number"),
-                                        track_visibility='onchange')
+                                        tracking=True)
     responsible_account_number = fields.Char(string=_("Responsible Account Number"),
-                                             track_visibility='onchange')
+                                             tracking=True)
 
     # Calculate age
     @api.depends("date")
@@ -136,22 +136,57 @@ class Resident(models.Model):
             record.document_count = document_count_dict.get(record.id, 0)
 
 
+class RelationshipType(models.Model):
+    _name="rm.resident.relationship.type"
+    _description = "type of relationship"
+    _sql_constraints =  [('unique_name', 'UNIQUE(name)', _('It already exists a type with that name.'))]
+    
+    name = fields.Char(
+        string='Name',
+        required=True,
+        translate=True
+        )
+
+class RelationshipType(models.Model):
+    _name="rm.resident.relationship.legal"
+    _description = "legal relation of relationship"
+    _sql_constraints =  [('unique_name', 'UNIQUE(name)', _('It already exists a legal relation with that name.'))]
+    
+    name = fields.Char(
+        string='Name',
+        required=True,
+        translate=True
+        )
+    
+
+
 class Relationship(models.Model):
     _name = "rm.resident.relationship"
     _description = "Resident Relationship"
 
-    name = fields.Char(compute="get_Name", string=_("Name"),track_visibility='onchange')
-    relation_name = fields.Char(string=_("Relation"),)
-    partner_id = fields.Many2one("res.partner", string=_("Partner"),track_visibility='onchange')
-    family_partner = fields.Many2one("res.partner", string=_("Relative"), required=True, track_visibility='onchange')
-    family_partner_num = fields.Char(string=_("Phone"), related="family_partner.mobile", track_visibility='onchange')
+    name = fields.Char(compute="get_Name", 
+                       string=_("Name"),
+                       tracking=True)
+    relation_name = fields.Many2one(
+        comodel_name="rm.resident.relationship.type", 
+        string=_("Relation")
+    )
+    relation_legal_id = fields.Many2one(comodel_name="rm.resident.relationship.legal", string="Legal relation")
+    partner_id = fields.Many2one("res.partner", string=_("Partner"),tracking=True)
+    family_partner = fields.Many2one("res.partner", 
+                                     string=_("Relative"), 
+                                     required=True, 
+                                     tracking=True)
+    family_partner_num = fields.Char(string=_("Phone"), 
+                                    related="family_partner.mobile", 
+                                    tracking=True)
 
     @api.depends("relation_name", "family_partner")
     def get_Name(self):
         for record in self:
             if record.relation_name and record.family_partner:
                 record.name = (
-                    record.family_partner.name + " (" + record.relation_name + ")"
+                    record.family_partner.name + " (" + record.relation_name.name + ")"
                 )
             else:
                 record.name = False

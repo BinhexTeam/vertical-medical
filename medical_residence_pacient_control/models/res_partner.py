@@ -33,7 +33,7 @@ class Resident(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": _("Basic"),
-            "view_mode": "calendar",
+            "view_mode": "tree",
             "res_model": "project.task",
             "view_id": self.env.ref(
                 "medical_residence_pacient_control.project_task_pacient_view_filtered"
