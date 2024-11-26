@@ -14,18 +14,6 @@
               </tree>
             </field>
           </page>
-          <page string="Treatment">
-            <field name="medical_treatment_ids">
-              <tree editable="top">
-                <field name="name"/>
-                <field name="product_ids" widget="many2many_tags"/>
-                <field name="date_begin"/>
-                <field name="date_end"/>
-                <field name="active_treatment"/>
-                <button name="action_plan_activity" string="Plan Activity" type="object" class="oe_link" icon="fa-medkit" attrs="{'invisible': [('active_treatment', '=', False)]}"></button>
-              </tree>
-            </field>
-          </page>
         </xpath>
         <xpath expr="//button[@name='action_view_dms']" position="after">
           <button name="action_see_basic_calendar" type="object" class="oe_stat_button" icon="fa-heartbeat">
