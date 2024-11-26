@@ -164,15 +164,6 @@ class Residence(models.Model):
                         'group_ids': [(Command.link(group.id))]
                     }
                 )
-                employees_folder = self.env["dms.directory"].create(
-                    {
-                        "name": res.name,
-                        "parent_id": parent_E,
-                        "residence_id": res.id,
-                        'is_root_directory': False,
-                        'group_ids': [(Command.link(group.id))]
-                    }
-                )     
         page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
         _logger.info("HOLA page_id "+str(page_id))
         if not page_id: 
@@ -198,15 +189,9 @@ class Residence(models.Model):
                 parent_R = self.env.ref(
                     "medical_residence_base.documents_residents_folder"
                 ).id
-                parent_E = self.env.ref(
-                    "medical_residence_base.documents_employees_folder"
-                ).id
                 if len(directory_ids) == 0:
                     residents_folder = self.env["dms.directory"].create(
                         {"name": vals["name"], "parent_id": parent_R}
-                    )
-                    employees_folder = self.env["dms.directory"].create(
-                        {"name": vals["name"], "parent_id": parent_E}
                     )
         if vals.get('employee_ids'):
             helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
