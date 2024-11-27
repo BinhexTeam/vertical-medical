@@ -66,6 +66,7 @@
             <group>
               <field name="type" invisible="1"/>
               <field name="residence_id"/>
+              <field name="phone" widget="phone"/>
               <field name="room_res_id" domain="[('residence_id', '=', residence_id)]" context="{'residence_': id}" attrs="{'invisible': [('residence_id', '=', False)]}"/>
               <field name="date"/>
               <field name="parent_id" invisible="1"/>
