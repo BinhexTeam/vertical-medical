@@ -62,6 +62,7 @@ class Residence(models.Model):
         "project.project", "residence_id", string=_("Projects")
     )
     ticket_ids = fields.One2many("helpdesk.ticket", "residence_id", string=_("Tickets"))
+    main_access_group_id = fields.Many2one(comodel_name="dms.access.group")
 
     @api.onchange("email")
     def validate_mail(self):
@@ -113,7 +114,6 @@ class Residence(models.Model):
         )
         _logger.info(str(helpdesk_team_id))
         if not helpdesk_team_id:
-            _logger.info("TEAM "+str(employee_users))
             helpdesk_team_id = self.env["helpdesk.ticket.team"].create(
                 {
                     "name": res.name,
@@ -155,29 +155,31 @@ class Residence(models.Model):
                     'perm_write' : True,
                     'perm_unlink': True
                 }])
+                res.main_access_group_id = group.id
                 residents_folder = self.env["dms.directory"].create(
                     {
                         "name": res.name,
                         "parent_id": parent_R,
                         "residence_id": res.id,
                         'is_root_directory': False,
-                        'group_ids': [(Command.link(group.id))]
+                        'group_ids': [
+                            (Command.link(group.id)),
+                            (Command.link(self.env.ref(
+                                'medical_residence_base.access_group_dms_admin'
+                                ).id))
+                            ]
                     }
                 )
         page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
-        _logger.info("HOLA page_id "+str(page_id))
         if not page_id: 
             page_id = self.env['document.page'].sudo().create({
                 'name': res.name,
                 'type': 'category',
             })
-            _logger.info("HOLA 2 page_id "+str(page_id))
         return res
 
     def write(self, vals):
         res = super(Residence, self).write(vals)
-        _logger.info("HOLA res "+str(res))
-        _logger.info("HOLA self "+str(self))
         if vals.get("name"):
             # Change project and folder name
             [x.write({"name": vals["name"]}) for x in self.project_ids]
