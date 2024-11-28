@@ -5,12 +5,29 @@ from datetime import datetime
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
+
+class MedicalInfoFields(models.Model):
+    _name="rm.resident.medical.info.fields"
+    _description="model for name medical info"
+    _sql_constraints =  [('unique_name', 'unique(name)',_('It already exists a field with that name.'))]
+    
+    name = fields.Char(
+        string="Name",
+        translate=True,
+        required=True
+    )
+    
+
 class MedicalInfo(models.Model):
     _name = "rm.resident.medical.info"
     _description = "Previous medical information about the pacient"
-
-    name = fields.Char(string=_("Name"), track_visibility='onchange')
-    observation = fields.Char(string=_("Observation"), track_visibility='onchange')
+   
+    name = fields.Many2one(
+        comodel_name="rm.resident.medical.info.fields",
+        string="Field",
+        required=True
+    )
+    observation = fields.Char(string=_("Observation"), tracking=True)
     resident_id = fields.Many2one("res.partner", string=_("Resident"))
 
 class Treatment(models.Model):
@@ -18,8 +35,8 @@ class Treatment(models.Model):
     _order = "active_treatment desc, date_begin desc"
     _description = "Resident Treatment"
 
-    name = fields.Char(string=_("Name"), track_visibility='onchange')
-    resident_id = fields.Many2one("res.partner", string=_("Resident"), track_visibility='onchange')
+    name = fields.Char(string=_("Name"), tracking=True)
+    resident_id = fields.Many2one("res.partner", string=_("Resident"), tracking=True)
 
     product_ids = fields.Many2many(
         "product.template",
@@ -29,7 +46,7 @@ class Treatment(models.Model):
             ("categ_id", "in", self.env.user.company_id.category_med_ids.ids),
             ("categ_id", "in", self.env.user.company_id.category_vac_ids.ids),
         ],
-        track_visibility='onchange'
+        tracking=True
     )
 
     @api.depends("date_begin", "date_end")

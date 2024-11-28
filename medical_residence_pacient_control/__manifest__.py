@@ -11,7 +11,12 @@
     "category": "Medical",
     "version": "16.0.1.0",
     # any module necessary for this one to work correctly
-    "depends": ["medical_residence_pacient", "calendar", "medical_residence_base","product"],
+    "depends": [
+        "medical_residence_pacient", 
+        "calendar", 
+        "medical_residence_base",
+        "product"
+    ],
     # always loaded
     "data": [
         # Data
@@ -30,6 +35,7 @@
         "views/res_partner_views.xml",
         "views/res_config_settings_views.xml",
         "views/rm_resident_views.xml",
+        "views/rm_medical_info_fields_views.xml",
     ],
     "images": ["static/description/icon.png"],
     "mantainer": ["szalatyzuzanna"],

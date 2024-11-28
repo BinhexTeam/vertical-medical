@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_rm_relationship_type_tree" model="ir.ui.view">
+            <field name="name">rm.relationship.tree</field>
+            <field name="model">rm.resident.relationship.type</field>
+            <field name="arch" type="xml">
+                <tree string="Fields" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_show_relationship_type" model="ir.actions.act_window">
+            <field name="name">Relationship Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rm.resident.relationship.type</field>
+            <field name="view_id" ref="view_rm_relationship_type_tree"/>
+        </record>
+    
+        <menuitem id="control_relationship_type_menu" 
+        name="Relationship Types" 
+        parent="medical_residence_base.configuration_menu" 
+        sequence="4" 
+        action="action_show_relationship_type" 
+        groups="base.group_system"
+        />
+    </data>
+</odoo>

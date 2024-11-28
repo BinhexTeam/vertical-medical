@@ -7,3 +7,5 @@ rm_resident_treatment,rm.resident.treatment,model_rm_resident_treatment,base.gro
 project_task_tasktype,project.task.tasktype,model_project_task_tasktype,base.group_user,1,1,1,1
 rm_resident_treatment_wizard,rm.resident.treatment.wizard,model_rm_resident_treatment_wizard,base.group_user,1,1,1,1
 rm_resident_treatment_manager,rm.resident.treatment.manager,model_rm_resident_treatment,medical_residence_base.group_residence_admin,1,1,1,1
+rm_resident_medical_info_fields,rm.resident.medical.info.fields,model_rm_resident_medical_info_fields,base.group_user,1,0,0,0
+rm_resident_medical_info_fields_admin,rm.resident.medical.info.fields.admin,model_rm_resident_medical_info_fields,base.group_system,1,1,1,1

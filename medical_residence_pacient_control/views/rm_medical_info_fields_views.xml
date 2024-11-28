@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_rm_medical_info_fields_tree" model="ir.ui.view">
+            <field name="name">rm.resident.medical.info.fields.tree</field>
+            <field name="model">rm.resident.medical.info.fields</field>
+            <field name="arch" type="xml">
+                <tree string="Fields" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_show_medical_fields" model="ir.actions.act_window">
+            <field name="name">Medical Fields</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rm.resident.medical.info.fields</field>
+            <field name="view_id" ref="view_rm_medical_info_fields_tree"/>
+        </record>
+    
+        <menuitem id="control_medical_field_menu" 
+        name="Medical Fields" 
+        parent="medical_residence_base.configuration_menu" 
+        sequence="4" 
+        action="action_show_medical_fields" 
+        groups="base.group_system"/>
+
+    </data>
+</odoo>

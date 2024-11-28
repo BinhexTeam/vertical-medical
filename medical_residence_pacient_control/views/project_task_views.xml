@@ -7,7 +7,6 @@
       <field name="arch" type="xml">
         <xpath expr="//header/button" position="before">
           <button name="send_mail" type="object" string="Send By Email" class="oe_highlight"/>
-          <button name="%(medical_residence_pacient_control.action_create_treatment)d" string="Create Treatment" type="action" class="oe_highlight" context="{'resident': partner_id}"/>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="attributes">
           <field name="tasktype_id" invisible="1"/>
