@@ -96,8 +96,8 @@
           <page string="Contacts">
             <field name="relationship_ids">
               <tree editable="top">
-                <field name="relation_name" required="1"/>
                 <field name="family_partner" required="1" context="{'default_is_family': True}" domain="[('is_family', '=', True)]" string="Relative"/>
+                <field name="relation_name" required="1"/>
                 <field name="relation_legal_id"/>
                 <field name="family_partner_num" widget="phone"/>
               </tree>
