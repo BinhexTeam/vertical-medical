@@ -75,31 +75,32 @@ class Resident(models.Model):
     pension_account_number = fields.Char(string=_("Pension Account Number"),
                                         tracking=True)
     responsible_account_number = fields.Char(string=_("Responsible Account Number"),
-                                            tracking=True)
-    systolic_pressure = fields.Float(
-        string="Systolic Pressure"
+                                            tracking=True
     )
-    diastolic_pressure = fields.Float(
-        string="Diastolic pressure"
-    )
-    pulse = fields.Float(
-        string="Pulse"
-    )
-    saturation = fields.Integer(
-        string="Saturation"
-    )
-    weight = fields.Float(
-        string="Weight"
-    )
-    blood_glucose = fields.Float(
-        string="Blood glucose"
-    )
-    height = fields.Integer(
-        string="Height"
-        )
-    temperature = fields.Float(
-        string="Temperature"
-        )
+    # systolic_pressure = fields.Float(
+    #     string="Systolic Pressure"
+    # )
+    # diastolic_pressure = fields.Float(
+    #     string="Diastolic pressure"
+    # )
+    # pulse = fields.Float(
+    #     string="Pulse"
+    # )
+    # saturation = fields.Integer(
+    #     string="Saturation"
+    # )
+    # weight = fields.Float(
+    #     string="Weight"
+    # )
+    # blood_glucose = fields.Float(
+    #     string="Blood glucose"
+    # )
+    # height = fields.Integer(
+    #     string="Height"
+    #     )
+    # temperature = fields.Float(
+    #     string="Temperature"
+    #     )
     
     # Calculate age
     @api.depends("date")
