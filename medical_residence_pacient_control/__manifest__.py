@@ -20,6 +20,7 @@
     # always loaded
     "data": [
         # Data
+        "data/rm_medical_info_fields_data.xml",
         "data/task_types.xml",
         "data/mail_template.xml",
         "data/hygiene_elems.xml",

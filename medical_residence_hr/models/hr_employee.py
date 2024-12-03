@@ -4,5 +4,6 @@ from odoo import models, fields, api, _
 
 class Employee(models.Model):
     _inherit = "hr.employee"
+    
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))
 
