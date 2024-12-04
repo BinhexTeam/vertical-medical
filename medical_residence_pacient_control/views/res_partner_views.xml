@@ -15,7 +15,7 @@
             </field>
           </page>
         </xpath>
-        <xpath expr="//button[@name='action_view_dms']" position="after">
+        <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
           <button name="action_see_basic_calendar" type="object" class="oe_stat_button" icon="fa-heartbeat">
             <div class="o_field_widget o_stat_info">
               <span class="o_stat_text">Basic Control</span>
