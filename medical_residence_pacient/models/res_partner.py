@@ -77,30 +77,6 @@ class Resident(models.Model):
     responsible_account_number = fields.Char(string=_("Responsible Account Number"),
                                             tracking=True
     )
-    # systolic_pressure = fields.Float(
-    #     string="Systolic Pressure"
-    # )
-    # diastolic_pressure = fields.Float(
-    #     string="Diastolic pressure"
-    # )
-    # pulse = fields.Float(
-    #     string="Pulse"
-    # )
-    # saturation = fields.Integer(
-    #     string="Saturation"
-    # )
-    # weight = fields.Float(
-    #     string="Weight"
-    # )
-    # blood_glucose = fields.Float(
-    #     string="Blood glucose"
-    # )
-    # height = fields.Integer(
-    #     string="Height"
-    #     )
-    # temperature = fields.Float(
-    #     string="Temperature"
-    #     )
     
     # Calculate age
     @api.depends("date")
@@ -122,43 +98,6 @@ class Resident(models.Model):
     def change_family_state(self):
         if self.is_family == True:
             self.residence_id = False
-
-    def action_view_dms(self):
-        action = self.env["ir.actions.act_window"]._for_xml_id("dms.action_dms_file")
-        directory_id = False
-        folder = self.env["dms.directory"].sudo().search([])
-        for fold in folder:
-            if fold.name == self.residence_id.name:
-                directory_id = fold.id
-                
-        action["domain"] = str(
-            [
-                ("partner_id", "=", self.id),
-            ]
-        )
-        action["context"] = str(
-            {
-                "default_partner_id": self.id,
-                "default_resident_id_doc": self.id,
-                "default_directory_id": directory_id,
-            }    
-        )
-        return action
-
-    document_count = fields.Integer("Document Count", compute="_compute_document_count")
-
-    def _compute_document_count(self):
-        read_group_var = self.env["dms.file"].read_group(
-            [("partner_id", "in", self.ids)],
-            fields=["partner_id"],
-            groupby=["partner_id"],
-        )
-
-        document_count_dict = dict(
-            (d["partner_id"][0], d["partner_id_count"]) for d in read_group_var
-        )
-        for record in self:
-            record.document_count = document_count_dict.get(record.id, 0)
 
 
 class RelationshipType(models.Model):

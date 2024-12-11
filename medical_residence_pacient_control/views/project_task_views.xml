@@ -32,26 +32,55 @@
             </field>
           </group>
           <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.BC_type)d)]}">
-            <h2>IMC</h2>
+            <h2>Basic Control</h2>
+            <group>
+              <field name="systolic_pressure"/>
+              <field name="diastolic_pressure"/>
+              <field name="heart_rate"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.saturation_type)d)]}">
+            <h2>Saturation Control</h2>
+            <group>
+              <field name="saturation"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.weight_type)d)]}">
+            <h2>Weight Control</h2>
+            <group>
+              <field name="weight"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.blood_glucose_type)d)]}">
+            <h2>Blood Glucose Control</h2>
+            <group>
+              <field name="glucose"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.height_type)d)]}">
+            <h2>Height Control</h2>
             <group>
               <field name="height"/>
-              <field name="weight"/>
-              <field name="imc"/>
             </group>
-            <h2>Pressure</h2>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.temperature_type)d)]}">
+            <h2>Temperature Control</h2>
             <group>
-              <field name="heartbeat"/>
-              <field name="pressure"/>
-              <field name="res_gender" invisible="1"/>
+              <field name="temperature"/>
             </group>
-            <div attrs="{'invisible': [('res_gender', '!=', 'fe')]}">
-              <h2>Period</h2>
-              <group>
-                <field name="period_cicle_start"/>
-                <field name="period_cicle_end"/>
-                <field name="num_days"/>
-              </group>
-            </div>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.bowel_movement_type)d)]}">
+            <h2>Bowel Movement Control</h2>
+            <group>
+              <field name="bowel_movement"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.menstruation_type)d)]}">
+            <h2>Menstruation</h2>
+            <group>
+              <field name="menstruation_start"/>
+              <field name="menstruation_end"/>
+            </group>
           </div>
           <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.A_type)d)]}">
             <field name="directory_id" invisible="1"/>
