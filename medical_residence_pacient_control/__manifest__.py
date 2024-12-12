@@ -15,7 +15,8 @@
         "medical_residence_pacient", 
         "calendar", 
         "medical_residence_base",
-        "product"
+        "product",
+        "project",
     ],
     # always loaded
     "data": [

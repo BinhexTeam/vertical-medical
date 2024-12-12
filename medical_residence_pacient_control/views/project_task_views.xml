@@ -142,5 +142,39 @@
         </xpath>
       </field>
     </record>
+
+    <record model="ir.ui.view" id="project_task_type_view">
+      <field name="name">project.task.tasktype.form</field>
+      <field name="model">project.task.tasktype</field>
+      <field name="arch" type="xml">
+        <form string="Task Type">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="project_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_task_type_tree_view">
+      <field name="name">project.task.tasktype.tree</field>
+      <field name="model">project.task.tasktype</field>
+      <field name="arch" type="xml">
+        <tree string="Task Types">
+          <field name="name"/>
+          <field name="project_ids" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="project_task_type_action">
+      <field name="name">Task Types</field>
+      <field name="res_model">project.task.tasktype</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="project_tasktype_menu" name="Tasks Types" parent="project.menu_project_config" sequence="10" action="project_task_type_action"/>
   </data>
 </odoo>
