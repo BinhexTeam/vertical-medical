@@ -1,29 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* pacient_control
+# 	* medical_residence_pacient_control
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e-20211005\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-26 07:48+0000\n"
-"PO-Revision-Date: 2022-08-26 08:56+0100\n"
+"POT-Creation-Date: 2024-12-16 07:09+0000\n"
+"PO-Revision-Date: 2024-12-16 07:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
 
-#. module: pacient_control
-#: model:mail.template,body_html:pacient_control.email_template
+#. module: medical_residence_pacient_control
+#: model:mail.template,body_html:medical_residence_pacient_control.email_template
 msgid ""
 "\n"
 "               <p>Dear ${(object.employee_id.name)},<br><br>\n"
-"                You have been asigned to a new task: ${(object."
-"task_picker)} for ${(object.partner_id.name).<br></p>\n"
+"                You have been asigned to a new task: ${(object.tasktype_id."
+"name)} for ${(object.partner_id.name).<br></p>\n"
 "                Stage: ${(object.stage_id.name)}\n"
 "                Due date: ${(object.date_deadline)}\n"
 "                Priority: ${(object.priority)}\n"
@@ -36,529 +36,607 @@ msgid ""
 "                View Request\n"
 "                </a>"
 msgstr ""
-"\n"
-"               <p>Don/Doña ${(object.employee_id.name)},<br><br>\n"
-"                Ha sido asignado a una nueva tarea: ${(object."
-"task_picker)} para ${(object.partner_id.name).<br></p>\n"
-"                Estado: ${(object.stage_id.name)}\n"
-"                Fecha Limite: ${(object.date_deadline)}\n"
-"                Prioridad: ${(object.priority)}\n"
-"                Saludos<br><br>\n"
-"                <a href=\"/web#id=${(object.id)}&active_id=7&model=project."
-"task&view_type=form&cids=1&menu_id=${(object.env.ref('project."
-"view_task_form2').id)}\" \n"
-"                style=\"background-color:#875A7B; padding: 10px; text-"
-"decoration: none; color: #fff; border-radius: 5px;\">\n"
-"                View Request\n"
-"                </a>"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.control_res_config_settings_view_form
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.control_res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Medicine Categories</span>"
-msgstr "<span class=\"o_form_label\">Categorías de Medicina</span>"
+msgstr "Categorías de Medicación"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.control_res_config_settings_view_form
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.control_res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Vaccine Categories</span>"
-msgstr "<span class=\"o_form_label\">Categorías de Vacuna</span>"
+msgstr "Categorías de Vacunas"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Basic Control</span>"
-msgstr "<span class=\"o_stat_text\">Control Basico</span>"
+msgstr "Control Básico"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Diagnostics</span>"
-msgstr "<span class=\"o_stat_text\">Analiticas</span>"
+msgstr "Diagnósticos"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Hygiene</span>"
-msgstr "<span class=\"o_stat_text\">Higiene</span>"
+msgstr "Higiene"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Monitoring</span>"
-msgstr "<span class=\"o_stat_text\">Seguimiento</span>"
+msgstr "Seguimiento"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Tasks</span>"
-msgstr "<span class=\"o_stat_text\">Tareas</span>"
+msgstr "Tareas"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "<span class=\"o_stat_text\">Treatment</span>"
-msgstr "<span class=\"o_stat_text\">Tratamiento</span>"
+msgstr "Tratamiento"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__active_treatment
 #, python-format
 msgid "Active"
 msgstr "Activo"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__active_treatment
-msgid "Activo"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__height
-msgid "Altura (Metros)"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/document.py:0
-#: code:addons/pacient_control/models/res_partner.py:0
-#: model:project.task.tasktype,name:pacient_control.A_type
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/dms_file.py:0
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_dms_file__task_id
+#: model:project.task.tasktype,name:medical_residence_pacient_control.A_type
 #, python-format
 msgid "Analysis"
 msgstr "Analítica"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__document_ids
 #, python-format
 msgid "Analysis Document"
 msgstr "Documento de Analítica"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_documents_document__task_id
-msgid "Analítica"
-msgstr ""
-
-#. module: pacient_control
-#: model:project.task.tasktype,name:pacient_control.App_type
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.App_type
 msgid "Appointment"
-msgstr "Cita"
+msgstr "Reserva"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__app_partner_id
 #, python-format
 msgid "Appointment Partner"
 msgstr "Contacto de visita"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_project_task_app_selection
+msgid "Appointment Selections"
+msgstr "Selecciones de Reserva"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__app_selection_id
 #, python-format
 msgid "Appointment Type"
-msgstr "Tipo de cita"
+msgstr "Tipo de Reserva"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__task_appointment_id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__task_appointment_id
 #, python-format
 msgid "Appointments"
-msgstr "Citas"
+msgstr "Reservas"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_assis_vio
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_assis_vio
 msgid "Assistance service for women victims of gender violence"
-msgstr "Servicio de atención a mujeres víctimas de violencia de género"
+msgstr "Servicio de asistencia para mujeres víctimas de Violencia de Género"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
 #, python-format
 msgid "Basic"
 msgstr "Básico"
 
-#. module: pacient_control
-#: model:project.task.tasktype,name:pacient_control.BC_type
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
 msgid "Basic Control"
-msgstr "Control Básico"
+msgstr "Control básico"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_can_emp
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.blood_glucose_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Blood Glucose Control"
+msgstr "Control de la glucemia"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__bowel_movement
+#, python-format
+msgid "Bowel Movement"
+msgstr "Evacuación "
+
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.bowel_movement_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Bowel Movement Control"
+msgstr "Control del movimiento intestinal"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_can_emp
 msgid "Canary Employment Service"
-msgstr "Servicio de empleo canario"
+msgstr "Servicio Canario de Empleo"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.create_treatment_form_view
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.create_treatment_form_view
 msgid "Cancel"
 msgstr "Cancelar"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_config_settings.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_config_settings.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_config_settings__group_categories_1
 #, python-format
 msgid "Categories"
 msgstr "Categorías"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_company__category_med_ids
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings__medicine_category_ids
-msgid "Categoría de Medicinas"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_1
+msgid "Centro de Salud"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings__group_categories
-msgid "Categorías"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_4
+msgid "Centro de Unidad de Salud Mental"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_company__category_vac_ids
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings__vaccine_category_ids
-msgid "Categorías de Vacunas"
-msgstr ""
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__city
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__city
+#, python-format
+msgid "City"
+msgstr "Ciudad"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__num_days
-msgid "Ciclo Menstrual"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner__task_appointment_id
-#: model:ir.model.fields,field_description:pacient_control.field_res_users__task_appointment_id
-msgid "Citas"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_res_company
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_comp
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_res_company
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_comp
 msgid "Companies"
 msgstr "Compañías"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_res_config_settings
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_res_config_settings
 msgid "Config Settings"
-msgstr "Opciones de configuración"
+msgstr "Ajustes de configuración"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_res_partner
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__app_partner_id
-msgid "Contacto de visita"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_6
+msgid "Contacto de Profesional de Salud Mental"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.ui.menu,name:pacient_control.control_config_settings_menu
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_3
+msgid "Contacto del Médico de Referencia"
+msgstr ""
+
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.BC_type
+msgid "Control Básico"
+msgstr ""
+
+#. module: medical_residence_pacient_control
+#: model:ir.ui.menu,name:medical_residence_pacient_control.control_config_settings_menu
 msgid "Control Settings"
-msgstr "Ajustes de Control de Pacientes"
+msgstr "Ajustes de Configuración"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_coun
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_coun
 msgid "Counseling"
-msgstr "Consejerías "
+msgstr "Asesoramiento"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_court
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__country_id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__country_id
+#, python-format
+msgid "Country"
+msgstr "País"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_court
 msgid "Court"
-msgstr "Juzgado"
+msgstr "Tribunal"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.create_treatment_form_view
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.create_treatment_form_view
 msgid "Create"
 msgstr "Crear"
 
-#. module: pacient_control
-#: model:ir.actions.act_window,name:pacient_control.action_create_treatment
-#: model_terms:ir.ui.view,arch_db:pacient_control.create_treatment_form_view
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_treatment_wizard
+msgid "Create Resident Treatment Wizard"
+msgstr "Asistente para la creación de tratamientos de residentes"
+
+#. module: medical_residence_pacient_control
+#: model:ir.actions.act_window,name:medical_residence_pacient_control.action_create_treatment
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.create_treatment_form_view
 msgid "Create Treatment"
 msgstr "Crear Tratamiento"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__create_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__create_uid
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__create_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__create_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__create_date
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__create_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__create_date
 msgid "Created on"
 msgstr "Creado el"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_den
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__date
+#, python-format
+msgid "Date"
+msgstr "Fecha"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_den
 msgid "Dentist"
 msgstr "Dentista"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_disab
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__diastolic_pressure
+#, python-format
+msgid "Diastolic Pressure"
+msgstr "Presión diastólica"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_disab
 msgid "Disability and Dependency Unit, IASS"
 msgstr "Unidad de Discapacidad y Dependencia, IASS"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_documents_document__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_recurrence__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_res_company__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__display_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__display_name
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__display_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Mostrar Nombre"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_documents_document
-msgid "Document"
-msgstr "Documento"
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__document_ids
-msgid "Documento de Analítica"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_7
+msgid "Diágnostico"
 msgstr ""
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__check
 #, python-format
 msgid "Done"
 msgstr "Hecho"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_drug
-msgid "Drug addiction care unit"
-msgstr "Unidad de atención a las drogodependencias"
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_drug
+msgid "Drug"
+msgstr "Medicamento"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_ed_ce
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_ed_ce
 msgid "Educational Center"
-msgstr "Centros formativos/educativos"
+msgstr "Centro Educacional"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__element_ids
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__element_ids
 msgid "Element"
 msgstr "Elemento"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/wizards/create_treatment.py:0
+#. module: medical_residence_pacient_control
+#: model:res.groups,name:medical_residence_pacient_control.group_categories_1
+msgid "Enable Categories Pacient Control"
+msgstr "Habilitar categorías de control de pacientes"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: code:addons/medical_residence_pacient_control/wizards/rm_resident_treatment_wizard.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__date_end
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__date_end
 #, python-format
 msgid "End Date"
 msgstr "Fecha Final"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_ent_found
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_ent_found
 msgid "Entities and/or foundations"
 msgstr "Entidades y/o fundaciones"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__directory_id
-msgid "Espacio de Trabajo"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__name
+msgid "Field"
+msgstr "Campo"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__tag_id
-msgid "Etiqueta"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.view_rm_medical_info_fields_tree
+msgid "Fields"
+msgstr "Campos"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__control_hygiene_ids
-msgid "Eventos de Higiene"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_dms_file
+msgid "File"
+msgstr "Archivo"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__date_end
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__date_end
-msgid "Fecha Final"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__date_begin
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__date_begin
-msgid "Fecha Inicial"
-msgstr ""
-
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_pacient_view_filtered
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_pacient_view_filtered
 msgid "Filtered Tasks"
 msgstr "Tareas filtradas"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__period_cicle_end
-msgid "Final de Ciclo Menstrual"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__res_gender
 #, python-format
 msgid "Gender"
 msgstr "Género"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__res_gender
-msgid "Género"
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__glucose
+#, python-format
+msgid "Glucose"
+msgstr "Glucosa"
+
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_9
+msgid "Grado de Dependencia"
 msgstr ""
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_he_ce
-msgid "Health Center"
-msgstr "Centros de salud"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_8
+msgid "Grado de Discapacidad"
+msgstr ""
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields.selection,name:medical_residence_pacient_control.selection__project_task__bowel_movement__hard
+#, python-format
+msgid "Hard"
+msgstr "Duro"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_he_ce
+msgid "Health Center"
+msgstr "Centro Sanitario"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__heart_rate
+#, python-format
+msgid "Heart Rate"
+msgstr "Ritmo cardíaco"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__heartbeat
 #, python-format
 msgid "Heartbeat in 30s"
 msgstr "Pulsaciones en 30s"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__check
-msgid "Hecho"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__height
 #, python-format
-msgid "Height (meters)"
+msgid "Height"
 msgstr "Altura (metros)"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.height_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Height Control"
+msgstr "Control de altura"
+
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
 msgid "Hour"
 msgstr "Hora"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
-#: model:project.task.tasktype,name:pacient_control.H_type
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:project.task.tasktype,name:medical_residence_pacient_control.H_type
 #, python-format
 msgid "Hygiene"
 msgstr "Higiene"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_control_hygiene_element
+msgid "Hygiene Element"
+msgstr "Elemento de Higiene"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__control_hygiene_ids
 #, python-format
 msgid "Hygiene Events"
 msgstr "Eventos de Higiene"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_documents_document__id
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__id
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__residence_id_task
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_recurrence__id
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__id
-#: model:ir.model.fields,field_description:pacient_control.field_res_company__id
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings__id
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__id
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_control_hygiene_element_name
+msgid "Hygiene Name"
+msgstr "Nombre de Higiene"
+
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__residence_id_task
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__id
 msgid "ID"
 msgstr ""
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__imc
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__imc
 #, python-format
 msgid "IMC"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner__medical_info_ids
-#: model:ir.model.fields,field_description:pacient_control.field_res_users__medical_info_ids
-msgid "Información Médica"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__period_cicle_start
-msgid "Inicio de Ciclo Menstrual"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/wizards/create_treatment.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: code:addons/medical_residence_pacient_control/wizards/rm_resident_treatment_wizard.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__date_begin
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__date_begin
 #, python-format
 msgid "Initial Date"
 msgstr "Fecha Inicial"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_documents_document____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_project_task____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_recurrence____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_res_company____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment____last_update
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: model:ir.model.constraint,message:medical_residence_pacient_control.constraint_rm_resident_medical_info_fields_unique_name
+#, python-format
+msgid "It already exists a field with that name."
+msgstr "Ya existe un campo con ese nombre."
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__write_uid
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__write_uid
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment____last_update
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__write_uid
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__write_date
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__write_date
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__write_date
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Última actualización en"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
+#. module: medical_residence_pacient_control
+#: model:ir.actions.act_window,name:medical_residence_pacient_control.action_show_medical_fields
+#: model:ir.ui.menu,name:medical_residence_pacient_control.control_medical_field_menu
+msgid "Medical Fields"
+msgstr "Campos médicos"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__medical_info_ids
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__medical_info_ids
 #, python-format
 msgid "Medical Info"
 msgstr "Información Médica"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__medical_treatment_ids
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__medical_treatment_ids
 #, python-format
 msgid "Medical Treatment"
-msgstr "Tratamiento Médico"
+msgstr "Tratamiento médico"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.inherited_res_partner_form_view_pacient
 msgid "Medical info"
-msgstr "Información Médica"
+msgstr "Información médica"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__product_event_ids
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__product_ids
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__product_ids
-msgid "Medicinas"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_config_settings.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_config_settings.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_config_settings__medicine_category_ids
 #, python-format
 msgid "Medicine Categories"
-msgstr "Categorías de Medicina"
+msgstr "Categorías de Medicamentos"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_config_settings.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_config_settings.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_company__category_med_ids
 #, python-format
 msgid "Medicine categories"
-msgstr "Categorías de Medicina"
+msgstr "Categorías de Medicamentos"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
 #, python-format
 msgid ""
 "Medicine not in current pacient treatments, please create a treatment first"
@@ -566,349 +644,500 @@ msgstr ""
 "El medicamento no se encuentra en ningún tratamiento del paciente, por "
 "favor, cree el tratamiento primero."
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/models/project_task.py:0
-#: code:addons/pacient_control/wizards/create_treatment.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: code:addons/medical_residence_pacient_control/wizards/rm_resident_treatment_wizard.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__product_event_ids
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__product_ids
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__product_ids
 #, python-format
 msgid "Medicines"
-msgstr "Medicinas"
+msgstr "Medicamentos"
 
-#. module: pacient_control
-#: model:project.task.tasktype,name:pacient_control.M_type
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.menstruation_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Menstruation"
+msgstr "Menstruación"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__menstruation_end
+#, python-format
+msgid "Menstruation End"
+msgstr "Fin de la menstruación"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__menstruation_start
+#, python-format
+msgid "Menstruation Start"
+msgstr "Inicio de la menstruación"
+
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.M_type
 msgid "Monitoring"
 msgstr "Seguimiento"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/models/project_task.py:0
-#: code:addons/pacient_control/wizards/create_treatment.py:0
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__project_name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element_name__name
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.nail_cutting_type
+msgid "Nail Cutting"
+msgstr "Corte de uñas"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: code:addons/medical_residence_pacient_control/wizards/rm_resident_treatment_wizard.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__project_name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element_name__name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info_fields__name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__name
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__name
 #, python-format
 msgid "Name"
 msgstr "Nombre"
 
-#. module: pacient_control
-#: model:mail.template,subject:pacient_control.email_template
-msgid "New Task: ${ctx['task']} for ${(object.partner_id.name)}"
-msgstr "Nueva Tarea: ${ctx['task']} para ${(object.partner_id.name)}"
+#. module: medical_residence_pacient_control
+#: model:ir.model.fields,help:medical_residence_pacient_control.field_project_task__project_name
+msgid ""
+"Name of your project. It can be anything you want e.g. the name of a "
+"customer or a service."
+msgstr ""
+"Nombre de su proyecto. Puede ser cualquier cosa, por ejemplo, el nombre de "
+"un cliente o de un servicio."
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__name_id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__name
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__name
+#. module: medical_residence_pacient_control
+#: model:mail.template,subject:medical_residence_pacient_control.email_template
+msgid "New Task: ${ctx['task']} for ${(object.partner_id.name)}"
+msgstr ""
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__name_id
 #, python-format
 msgid "Nombre"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__observations
-msgid "Observaciones"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_5
+msgid "Nombre de Profesional de Salud Mental"
 msgstr ""
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__observation
-msgid "Observación"
+#. module: medical_residence_pacient_control
+#: model:rm.resident.medical.info.fields,name:medical_residence_pacient_control.resident_medical_info_fields_2
+msgid "Nombre del Médico de Referencia"
 msgstr ""
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields.selection,name:medical_residence_pacient_control.selection__project_task__bowel_movement__normal
+#, python-format
+msgid "Normal"
+msgstr ""
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__observation
 #, python-format
 msgid "Observation"
 msgstr "Observación"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__observations
 #, python-format
 msgid "Observations"
 msgstr "Observaciones"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_oc_ce
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_oc_ce
 msgid "Occupational centers"
 msgstr "Centros ocupacionales"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.control_res_config_settings_view_form
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.control_res_config_settings_view_form
 msgid "Pacient Control"
-msgstr "Control de Paciente"
+msgstr "Control de pacientes"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_penitentiary_center
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_penitentiary_center
 msgid "Penitentiary Center"
-msgstr "Centro Peninteciario"
+msgstr "Centro Penitenciario"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
-msgid "Period"
-msgstr "Menstruación"
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__num_days
 #, python-format
 msgid "Period Cicle"
 msgstr "Ciclo Menstrual"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__period_cicle_end
 #, python-format
 msgid "Period Cicle end"
 msgstr "Final del ciclo menstrual"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__period_cicle_start
 #, python-format
 msgid "Period Cicle start"
 msgstr "Inicio del periodo menstrual"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__weight
-msgid "Peso"
-msgstr ""
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__phone
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__phone
+#, python-format
+msgid "Phone"
+msgstr "Teléfono"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
-msgid "Plan Activity"
-msgstr "Planificar Tarea"
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__pressure
-msgid "Presión"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__pressure
 #, python-format
 msgid "Pressure"
 msgstr "Presión"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_resident_medical_info
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_medical_info
 msgid "Previous medical information about the pacient"
 msgstr "Información médica previa sobre el paciente"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.control_res_config_settings_view_form
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.control_res_config_settings_view_form
 msgid "Product Categories"
-msgstr "Categoría de Productos"
+msgstr "Categorías de productos"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#: model:res.groups,comment:medical_residence_pacient_control.group_categories_1
+msgid "Product Categories."
+msgstr "Categorías de productos."
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task_tasktype__project_ids
 #, python-format
 msgid "Project"
 msgstr "Proyecto"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task_tasktype__project_ids
-msgid "Proyecto"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_project_task_tasktype
+msgid "Project Task Type"
+msgstr "Tipo de tarea del proyecto"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_psy
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_psy
 msgid "Psychiatry"
 msgstr "Psiquiatría"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_pub_ad
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_pub_ad
 msgid "Public administrations"
 msgstr "Administraciones públicas"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__heartbeat
-msgid "Pulsaciones en 30s"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/wizards/create_treatment.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: code:addons/medical_residence_pacient_control/wizards/rm_resident_treatment_wizard.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_medical_info__resident_id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment__resident_id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_treatment_wizard__resident_id
 #, python-format
 msgid "Resident"
 msgstr "Residente"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_medical_info__resident_id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment__resident_id
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_treatment_wizard__resident_id
-msgid "Residente"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_treatment
+msgid "Resident Treatment"
+msgstr "Tratamiento de residente"
 
-#. module: pacient_control
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__saturation
+#, python-format
+msgid "Saturation"
+msgstr "Saturación"
+
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.saturation_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Saturation Control"
+msgstr "Control de saturación"
+
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
 msgid "Send By Email"
-msgstr "Enviar correo"
+msgstr "Enviar por Email"
 
-#. module: pacient_control
-#: model:ir.actions.act_window,name:pacient_control.control_config_settings_action
+#. module: medical_residence_pacient_control
+#: model:mail.template,name:medical_residence_pacient_control.email_template
+msgid "Send Task by mail to followers"
+msgstr "Enviar tarea por correo a los seguidores"
+
+#. module: medical_residence_pacient_control
+#: model:ir.actions.act_window,name:medical_residence_pacient_control.control_config_settings_action
 msgid "Settings"
 msgstr "Ajustes"
 
-#. module: pacient_control
-#: model:rm.resident.control.hygiene.element.name,name:pacient_control.hygiene_elem_shave
+#. module: medical_residence_pacient_control
+#: model:rm.resident.control.hygiene.element.name,name:medical_residence_pacient_control.hygiene_elem_shave
 msgid "Shaving"
 msgstr "Afeitado"
 
-#. module: pacient_control
-#: model:rm.resident.control.hygiene.element.name,name:pacient_control.hygiene_elem_shower
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.shower_type
+#: model:rm.resident.control.hygiene.element.name,name:medical_residence_pacient_control.hygiene_elem_shower
 msgid "Shower"
 msgstr "Ducha"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_soc_in
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_soc_in
 msgid "Social Insurence"
-msgstr "Seguridad social"
+msgstr "Seguridad Social"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_soc_lab
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_soc_lab
 msgid "Social and labor insertion centers"
 msgstr "Centros de inserción sociolaboral"
 
-#. module: pacient_control
-#: model:rm.project.task.app.selection,name:pacient_control.app_sel_spec_emp
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields.selection,name:medical_residence_pacient_control.selection__project_task__bowel_movement__soft
+#, python-format
+msgid "Soft"
+msgstr "Blando"
+
+#. module: medical_residence_pacient_control
+#: model:rm.project.task.app.selection,name:medical_residence_pacient_control.app_sel_spec_emp
 msgid "Special employment centers"
 msgstr "Centros especiales de empleo"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
 #, python-format
 msgid "Start date should not greater than end date."
 msgstr "La ficha inicial no puede ser mayor que la final"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__state_id
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__state_id
+#, python-format
+msgid "State"
+msgstr "Provincia"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__street
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__street
+#, python-format
+msgid "Street"
+msgstr "Calle"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__street2
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__street2
+#, python-format
+msgid "Street2"
+msgstr "Calle2"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__systolic_pressure
+#, python-format
+msgid "Systolic Pressure"
+msgstr "Presión sistólica"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__tag_id
 #, python-format
 msgid "Tag"
 msgstr "Etiqueta"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__task_id
-msgid "Tarea"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
-#: model:ir.model,name:pacient_control.model_project_task
-#: model:ir.model.fields,field_description:pacient_control.field_rm_project_task_app_selection__task_ids
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model,name:medical_residence_pacient_control.model_project_task
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_project_task_app_selection__task_ids
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__task_id
 #, python-format
 msgid "Task"
 msgstr "Tarea"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_project_task_recurrence
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_project_task_recurrence
 msgid "Task Recurrence"
 msgstr "Recurrencia de tareas"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_form_view
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__tasktype_id
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_type_view
 #, python-format
 msgid "Task Type"
 msgstr "Tipo de Tarea"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_partner.py:0
-#: model_terms:ir.ui.view,arch_db:pacient_control.project_task_pacient_view
+#. module: medical_residence_pacient_control
+#: model:ir.actions.act_window,name:medical_residence_pacient_control.project_task_type_action
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_type_tree_view
+msgid "Task Types"
+msgstr "Tipos de tareas"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_pacient_view
 #, python-format
 msgid "Tasks"
 msgstr "Tareas"
 
-#. module: pacient_control
-#: model:rm.resident.control.hygiene.element.name,name:pacient_control.hygiene_elem_teeth
+#. module: medical_residence_pacient_control
+#: model:ir.ui.menu,name:medical_residence_pacient_control.project_tasktype_menu
+msgid "Tasks Types"
+msgstr "Tipos de tareas"
+
+#. module: medical_residence_pacient_control
+#: model:rm.resident.control.hygiene.element.name,name:medical_residence_pacient_control.hygiene_elem_teeth
 msgid "Teeth"
-msgstr "Cepillado de Dientes"
+msgstr "Dientes"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_rm_resident_control_hygiene_element__time
-msgid "Tiempo"
-msgstr ""
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__temperature
+#, python-format
+msgid "Temperature"
+msgstr "Temperatura"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.temperature_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Temperature Control"
+msgstr "Control de la temperatura"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_rm_resident_control_hygiene_element__time
 #, python-format
 msgid "Time"
-msgstr "Hora"
+msgstr "Tiempo"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__tasktype_id
-msgid "Tipo de Tarea"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.tooth_brushing_type
+msgid "Tooth Brushing"
+msgstr "Cepillado dental"
 
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_project_task__app_selection_id
-msgid "Tipo de cita"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model.fields,field_description:pacient_control.field_res_partner__medical_treatment_ids
-#: model:ir.model.fields,field_description:pacient_control.field_res_users__medical_treatment_ids
-msgid "Tratamiento Médico"
-msgstr ""
-
-#. module: pacient_control
-#: code:addons/pacient_control/models/medicalinfo.py:0
-#: code:addons/pacient_control/models/res_partner.py:0
-#: model:project.task.tasktype,name:pacient_control.T_type
-#: model_terms:ir.ui.view,arch_db:pacient_control.inherited_res_partner_form_view_pacient
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: code:addons/medical_residence_pacient_control/models/rm_resident.py:0
+#: model:project.task.tasktype,name:medical_residence_pacient_control.T_type
 #, python-format
 msgid "Treatment"
 msgstr "Tratamiento"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_config_settings.py:0
+#. module: medical_residence_pacient_control
+#: model:ir.actions.act_window,name:medical_residence_pacient_control.action_show_treatments
+#: model:ir.ui.menu,name:medical_residence_pacient_control.control_treatments_menu
+msgid "Treatments"
+msgstr "Tratamientos"
+
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.urination_type
+msgid "Urination"
+msgstr "Micción"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_config_settings.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_config_settings__vaccine_category_ids
 #, python-format
 msgid "Vaccine Categories"
 msgstr "Categorías de Vacuna"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/res_config_settings.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_config_settings.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_company__category_vac_ids
 #, python-format
 msgid "Vaccine categories"
 msgstr "Categorías de Vacuna"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__weight
 #, python-format
 msgid "Weight"
 msgstr "Peso"
 
-#. module: pacient_control
-#: code:addons/pacient_control/models/project_task.py:0
+#. module: medical_residence_pacient_control
+#: model:project.task.tasktype,name:medical_residence_pacient_control.weight_type
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.project_task_form_view
+msgid "Weight Control"
+msgstr "Control del peso"
+
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/project_task.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_project_task__directory_id
 #, python-format
 msgid "Workspace"
-msgstr "Espacio de Trabajo"
+msgstr "Espacio de trabajo"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_project_task_tasktype
-msgid "project.task.tasktype"
-msgstr ""
+#. module: medical_residence_pacient_control
+#. odoo-python
+#: code:addons/medical_residence_pacient_control/models/res_partner.py:0
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_partner__zip
+#: model:ir.model.fields,field_description:medical_residence_pacient_control.field_res_users__zip
+#, python-format
+msgid "Zip"
+msgstr "C.P."
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_project_task_app_selection
-msgid "rm.project.task.app.selection"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.view_rm_resident_treatment__form
+msgid "Zone"
+msgstr "Zona"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_resident_control_hygiene_element
-msgid "rm.resident.control.hygiene.element"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model_terms:ir.ui.view,arch_db:medical_residence_pacient_control.view_rm_resident_treatment_tree
+msgid "Zones"
+msgstr "Zonas"
 
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_resident_control_hygiene_element_name
-msgid "rm.resident.control.hygiene.element.name"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_resident_treatment
-msgid "rm.resident.treatment"
-msgstr ""
-
-#. module: pacient_control
-#: model:ir.model,name:pacient_control.model_rm_resident_treatment_wizard
-msgid "rm.resident.treatment.wizard"
-msgstr ""
+#. module: medical_residence_pacient_control
+#: model:ir.model,name:medical_residence_pacient_control.model_rm_resident_medical_info_fields
+msgid "model for name medical info"
+msgstr "modelo para nombre información médica"
