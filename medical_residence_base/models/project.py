@@ -6,4 +6,5 @@ from odoo.exceptions import ValidationError
 
 class Project(models.Model):
     _inherit = "project.project"
+    
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))
