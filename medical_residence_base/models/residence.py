@@ -195,6 +195,7 @@ class Residence(models.Model):
                     residents_folder = self.env["dms.directory"].create(
                         {"name": vals["name"], "parent_id": parent_R}
                     )
+                    
         if vals.get('employee_ids'):
             helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
                 [("name", "=", self.name)], limit=1
@@ -210,10 +211,19 @@ class Residence(models.Model):
                     ),
                 ]
             )
+            
             helpdesk_team_id.write({
                 "user_ids": [(6, 0, employee_users.ids)]
             })
-
+            
+            project = self.env['project.project'].search([('residence_id', '=', self.id)])
+            if project:
+                project.write({
+                    'favorite_user_ids': [(6,0,employee_users.ids)],
+                    })
+                project.message_subscribe(partner_ids=employee_users.partner_id)
+                import wdb; wdb.set_trace()
+                  
         return res
 
     def action_see_expenses(self):
