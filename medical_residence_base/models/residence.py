@@ -162,6 +162,7 @@ class Residence(models.Model):
                         "parent_id": parent_R,
                         "residence_id": res.id,
                         'is_root_directory': False,
+                        'inherit_group_ids' : False,
                         'group_ids': [
                             (Command.link(group.id)),
                             (Command.link(self.env.ref(
@@ -170,6 +171,9 @@ class Residence(models.Model):
                             ]
                     }
                 )
+                resident_folder = self.env['dms.directory'].browse(parent_R)
+                resident_folder.write({'group_ids' : [(Command.link(group.id))]})
+                
         page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
         if not page_id: 
             page_id = self.env['document.page'].sudo().create({
@@ -220,10 +224,14 @@ class Residence(models.Model):
             if project:
                 project.write({
                     'favorite_user_ids': [(6,0,employee_users.ids)],
-                    })
-                project.message_subscribe(partner_ids=employee_users.partner_id)
-                import wdb; wdb.set_trace()
-                  
+                })
+                
+                followers_partner_ids = project.message_follower_ids.mapped('partner_id')
+                employee_partner_ids =  employee_users.mapped('partner_id')
+                
+                unsubscribe_partner_ids = followers_partner_ids - employee_partner_ids
+                project.message_unsubscribe(partner_ids=unsubscribe_partner_ids.ids)
+                project.message_subscribe(partner_ids=employee_users.mapped('partner_id').ids)
         return res
 
     def action_see_expenses(self):
