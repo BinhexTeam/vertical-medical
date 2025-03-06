@@ -11,6 +11,13 @@ _logger = logging.getLogger(__name__)
 class Residence(models.Model):
     _name = "rm.residence"
     _description = "Residence"
+    
+    company_id = fields.Many2one(
+        string="Company", 
+        comodel_name="res.company", 
+        ondelete='restrict',
+        default=lambda self: self.env.company.id
+    )
 
     directory_ids = fields.One2many("dms.directory", "residence_id")
     
@@ -142,13 +149,15 @@ class Residence(models.Model):
         if res.name != _("Residents") and res.name != _("Employees"):
             directory_ids = self.env["dms.directory"].search([("name", "=", res.name)])
             parent_R = self.env.ref(
-                "medical_residence_base.documents_residents_folder"
-            ).id
-            parent_E = self.env.ref(
-                "medical_residence_base.documents_employees_folder"
-            ).id
-            # Assign folders for residence
-            if len(directory_ids) == 0:
+                "medical_residence_base.dms_residents_%s" % res.company_id.id
+            )
+            
+            directory = self.env.ref(
+                'medical_residence_base.dms_residence_%s' % (res.id),
+                raise_if_not_found=False
+            )
+            
+            if not directory:
                 group = self.env['dms.access.group'].create([{
                     'name' : res.name,
                     'perm_create' : True,
@@ -156,10 +165,10 @@ class Residence(models.Model):
                     'perm_unlink': True
                 }])
                 res.main_access_group_id = group.id
-                residents_folder = self.env["dms.directory"].create(
+                directory = self.env["dms.directory"].create(
                     {
                         "name": res.name,
-                        "parent_id": parent_R,
+                        "parent_id": parent_R.id,
                         "residence_id": res.id,
                         'is_root_directory': False,
                         'inherit_group_ids' : False,
@@ -171,8 +180,13 @@ class Residence(models.Model):
                             ]
                     }
                 )
-                resident_folder = self.env['dms.directory'].browse(parent_R)
-                resident_folder.write({'group_ids' : [(Command.link(group.id))]})
+                self._create_xml_id(
+                    module='medical_residence_base',
+                    name="dms_residence_%s" % (res.id), 
+                    model='dms.directory',
+                    res_id=directory.id,
+                    noupdate=True
+                )
                 
         page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
         if not page_id: 
@@ -185,20 +199,11 @@ class Residence(models.Model):
     def write(self, vals):
         res = super(Residence, self).write(vals)
         if vals.get("name"):
-            # Change project and folder name
-            [x.write({"name": vals["name"]}) for x in self.project_ids]
-            directory_ids = self.env["dms.directory"].search([("name", "=", self.name)])
-            if directory_ids:
-                for folder in directory_ids:
-                    folder.write({"name": vals["name"]})
-            else:
-                parent_R = self.env.ref(
-                    "medical_residence_base.documents_residents_folder"
-                ).id
-                if len(directory_ids) == 0:
-                    residents_folder = self.env["dms.directory"].create(
-                        {"name": vals["name"], "parent_id": parent_R}
-                    )
+            directory = self.env.ref(
+                'medical_residence_base.dms_residence_%s' % (self.id),
+                raise_if_not_found=False
+            )
+            directory.write({'name': vals.get('name')})
                     
         if vals.get('employee_ids'):
             helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
@@ -302,16 +307,16 @@ class Residence(models.Model):
         }
     def action_see_docs(self):
         self.ensure_one()
-        directory_id = self.env["dms.directory"].search([("name", "=", self.name),('parent_id', '=', self.env.ref("medical_residence_base.documents_residents_folder").id)])
+        directory_id =  self.env.ref("medical_residence_base.dms_residence_%s" % self.id ).id
         return {
             "type": "ir.actions.act_window",
             "name": _("Folders"),
             "view_mode": "kanban,form",
             "res_model": "dms.directory",
-            "domain": [('parent_id', '=', directory_id.id)],
+            "domain": [('parent_id', '=', directory_id)],
             "context": {
-                "default_parent_id": directory_id.id,
-                "searchpanel_default_parent_id": directory_id.id,
+                "default_parent_id": directory_id,
+                "searchpanel_default_parent_id": directory_id,
             },
         }
     #action_see_docs
@@ -320,7 +325,7 @@ class Residence(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": _("Activities"),
-            "view_mode": "kanban,form",
+            "view_mode": "kanban,tree,form",
             "res_model": "project.task",
             "domain": [
                 ("project_id.name", "=", self.name),
@@ -330,10 +335,12 @@ class Residence(models.Model):
             + str(self.sudo().project_ids[0].id)
             + "}",
         }
+    def _create_xml_id(self, **kw):
+        self.env['ir.model.data'].create(kw)
 
 class Workspace(models.Model):
     _inherit = "dms.directory"
-
+    
     residence_id = fields.Many2one("rm.residence")
 
     @api.onchange("residence_id")
@@ -344,6 +351,13 @@ class Room(models.Model):
     _name = "rm.residence.room"
     _description = "Residence Rooms"
 
+    
+    company_id = fields.Many2one(
+        string='Company',
+        comodel_name='res.company',
+        related = "residence_id.company_id"
+    )
+    
     name = fields.Char(string=_("Name"), required=True)
     floor = fields.Integer(string=_("Floor"))
 

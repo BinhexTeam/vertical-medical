@@ -29,6 +29,7 @@
         "data/product_category.xml",
         # Security
         "security/ir.model.access.csv",
+        "security/ir_rules.xml",
         "security/res_config_settings_security.xml",
         # Wizards
         "wizards/rm_resident_treatment_wizard_views.xml",
@@ -38,7 +39,8 @@
         "views/res_config_settings_views.xml",
         "views/rm_resident_views.xml",
         "views/rm_medical_info_fields_views.xml",
+        "security/ir_rules.xml"
     ],
     "images": ["static/description/icon.png"],
-    "mantainer": ["szalatyzuzanna"],
+    "mantainer": ["szalatyzuzanna", "adasatorres"],
 }

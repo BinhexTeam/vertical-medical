@@ -17,6 +17,13 @@ class MedicalInfoFields(models.Model):
         required=True
     )
     
+    company_id = fields.Many2one(
+        string='Company',
+        comodel_name='res.company',
+        ondelete='restrict',
+        default=lambda self: self.env.company.id
+    )
+    
 
 class MedicalInfo(models.Model):
     _name = "rm.resident.medical.info"
@@ -37,6 +44,12 @@ class Treatment(models.Model):
 
     name = fields.Char(string=_("Name"), tracking=True)
     resident_id = fields.Many2one("res.partner", string=_("Resident"), tracking=True)
+
+    company_id = fields.Many2one(
+        string='Company',
+        comodel_name='res.company',
+        related="resident_id.company_id"
+    )
 
     product_ids = fields.Many2many(
         "product.template",
