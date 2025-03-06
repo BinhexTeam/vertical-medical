@@ -31,7 +31,7 @@ class Company(models.Model):
                 continue
                 
             directory = self.env['dms.directory'].create({
-                'name': dir_name,
+                'name': "%s - %s " % (dir_name, self.name),
                 'is_root_directory': True,
                 'color': 1,
                 'storage_id' : storage.id,
@@ -39,7 +39,8 @@ class Company(models.Model):
                 'group_ids': [(6,0,[
                     self.env.ref('medical_residence_base.access_group_dms_admin').id,
                     self.env.ref('medical_residence_base.access_group_dms_employees').id
-                ])]  
+                ])],
+                'company_id': storage.company_id.id
             })
             self._create_xml_id(
                 module='medical_residence_base',

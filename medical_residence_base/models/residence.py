@@ -340,12 +340,6 @@ class Residence(models.Model):
 
 class Workspace(models.Model):
     _inherit = "dms.directory"
-
-    company_id = fields.Many2one(
-        string='Company',
-        comodel_name='res.company',
-        related = "residence_id.company_id"
-    )
     
     residence_id = fields.Many2one("rm.residence")
 
