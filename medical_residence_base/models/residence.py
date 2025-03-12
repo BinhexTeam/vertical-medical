@@ -269,7 +269,8 @@ class Residence(models.Model):
             "res_model": "helpdesk.ticket",
             "type": "ir.actions.act_window",
             "view_mode": "kanban,tree,form",
-            "domain": [("residence_id", '=', self.id)]
+            "domain": [("residence_id", '=', self.id)],
+            "context" : {'default_residence_id' :  self.id}
         }
 
     def action_see_residents(self):
