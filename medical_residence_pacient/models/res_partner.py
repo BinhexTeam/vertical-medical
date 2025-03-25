@@ -63,8 +63,6 @@ class Resident(models.Model):
         tracking=True
     )
     observations = fields.Text(string=_("Observations"), tracking=True)
-    # Documents
-    document_ids = fields.One2many("dms.file", "resident_id_doc", string=_("Document"), tracking=True)
 
     # Account
     health_card = fields.Char(string=_("Health Card"),tracking=True)

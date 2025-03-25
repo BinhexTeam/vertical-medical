@@ -82,11 +82,6 @@
               <field name="menstruation_end"/>
             </group>
           </div>
-          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.A_type)d)]}">
-            <field name="directory_id" invisible="1"/>
-            <field name="tag_id" invisible="1"/>
-            <field name="document_ids" context="{'default_partner_id': partner_id, 'default_directory_id': directory_id, 'default_tag_ids': [tag_id]}"/>
-          </div>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="replace">
           <field name="residence_id_task" invisible="1"/>
