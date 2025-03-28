@@ -1,10 +1,13 @@
 # Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# Copyright 2024 Binhex - Adasat Torres de León.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import models, fields, api, _
 import re
 from odoo.exceptions import ValidationError
 from odoo.fields import Command
 import datetime
+from ast import literal_eval
+from odoo.osv.expression import AND
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -308,18 +311,26 @@ class Residence(models.Model):
         }
     def action_see_docs(self):
         self.ensure_one()
-        directory_id =  self.env.ref("medical_residence_base.dms_residence_%s" % self.id ).id
-        return {
-            "type": "ir.actions.act_window",
-            "name": _("Folders"),
-            "view_mode": "kanban,form",
-            "res_model": "dms.directory",
-            "domain": [('parent_id', '=', directory_id)],
-            "context": {
-                "default_parent_id": directory_id,
-                "searchpanel_default_parent_id": directory_id,
-            },
-        }
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "dms.action_dms_directory"
+        )
+        directory = self.env.ref("medical_residence_base.dms_residence_%s" % self.id )
+        domain = AND(
+            [
+                literal_eval(action["domain"].strip()),
+                [("parent_id", "child_of", directory.id)]
+            ]
+        )
+        action['domain'] = domain
+        action["context"] = dict(
+            self.env.context,
+            active_id= directory.id,
+            active_ids= directory.ids,
+            default_parent_id=directory.id,
+            searchpanel_default_parent_id=directory.id,
+        )
+        return action 
+        
     #action_see_docs
     def action_see_treatments(self):
         self.ensure_one()
