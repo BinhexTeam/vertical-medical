@@ -19,7 +19,6 @@ class ProjectTask(models.Model):
         "rm.project.task.app.selection", string=_("Appointment Type")
     )
     app_partner_id = fields.Many2one("res.partner", string=_("Appointment Partner"))
-    document_ids = fields.One2many("dms.file", "task_id", string=_("Analysis Document"))
     product_event_ids = fields.Many2many(
         "product.template",
         string=_("Medicines"),
@@ -34,55 +33,7 @@ class ProjectTask(models.Model):
     )
     project_name = fields.Char(related="project_id.name")
     residence_id_task = fields.Integer(related="project_id.residence_id.id")
-    # Document for analysis task
-    directory_id = fields.Many2one(
-        "dms.directory", compute="get_folder", store=True, string=_("Workspace")
-    )
-    tag_id = fields.Many2one("dms.tag", compute="get_tag", store=True, string=_("Tag"))
 
-
-    @api.depends("partner_id")
-    def get_folder(self):
-        folder = (
-            self.env["dms.directory"]
-            .sudo()
-            .search(
-                [
-                    "&",
-                    ("name", "in", self.partner_id.residence_id.mapped('name')),
-                    (
-                        "parent_id",
-                        "=",
-                        self.env.ref(
-                            "medical_residence_base.documents_residents_folder"
-                        ).id,
-                    ),
-                ]
-            )
-        )
-        if folder:
-            self.directory_id = fields.first(folder).id
-        else:
-            self.directory_id = False
-
-    @api.depends("directory_id")
-    def get_tag(self):
-        tag = (
-            self.env["dms.tag"]
-            .sudo()
-            .search(
-                [
-                    (
-                        "id",
-                        "=",
-                        self.env.ref(
-                            "medical_residence_base.documents_residents_documents_analitica"
-                        ).id,
-                    )
-                ]
-            )
-        )
-        self.tag_id = tag.id
     # ----------------------------------------------------------------------------------------------------------------
     @api.model
     def create(self, vals):
