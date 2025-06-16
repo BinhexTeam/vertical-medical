@@ -165,7 +165,8 @@
               </field>
             </page>
             <page string="Employees" groups="medical_residence_base.group_residence_manager">
-              <field name="employee_ids" widget="many2many" mode="kanban" />
+              <field name="company_id" invisible="1"/>
+              <field name="employee_ids" widget="many2many" mode="kanban" domain="[('company_id', '=', company_id)]" />
             </page>
           </notebook>
         </sheet>
