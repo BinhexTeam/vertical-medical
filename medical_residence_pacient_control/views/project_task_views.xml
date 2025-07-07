@@ -21,7 +21,7 @@
             <field name="tasktype_id" invisible="1"/>
             <field name="app_selection_id" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.App_type)d)]}"/>
             <field name="app_partner_id" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.App_type)d)]}" domain="[('residence_id', '=', False)]"/>
-            <field name="product_event_ids" widget="many2many_tags" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.T_type)d)]}" readonly="context.get('default_product_event_ids')"/>
+            <field name="product_event_ids" widget="many2many_tags" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.T_type)d)]}" readonly="True"/>
             <field name="control_hygiene_ids" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.H_type)d)]}">
               <tree editable="top">
                 <field name="name_id"/>

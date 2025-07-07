@@ -165,10 +165,20 @@
               </field>
             </page>
             <page string="Employees" groups="medical_residence_base.group_residence_manager">
-              <field name="employee_ids" widget="many2many" mode="kanban" />
+              <field name="company_id" invisible="1"/>
+              <field name="employee_ids" widget="many2many" mode="kanban" domain="[('company_id', '=', company_id)]" />
             </page>
           </notebook>
         </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="activity_ids" widget="mail_activity" />
+            <field
+                name="message_ids"
+                widget="mail_thread"
+                options="{'post_refresh': 'recipients', 'open_attachments': True}"
+            />
+          </div>
       </form>
     </field>
   </record>

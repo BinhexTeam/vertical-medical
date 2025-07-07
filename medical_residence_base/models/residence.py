@@ -13,13 +13,15 @@ _logger = logging.getLogger(__name__)
 
 class Residence(models.Model):
     _name = "rm.residence"
+    _inherit = ["mail.thread.cc", "mail.activity.mixin"]
     _description = "Residence"
     
     company_id = fields.Many2one(
         string="Company", 
         comodel_name="res.company", 
         ondelete='restrict',
-        default=lambda self: self.env.company.id
+        default=lambda self: self.env.company.id,
+        tracking=True
     )
 
     directory_ids = fields.One2many("dms.directory", "residence_id")
@@ -129,15 +131,8 @@ class Residence(models.Model):
                     "name": res.name,
                     "default_project_id": project.id,
                     "residence_id": res.id,
-                    "user_ids": [(6, 0, employee_users.ids)]
-                    if employee_users
-                    else False,
                 }
             )
-        else:
-            helpdesk_team_id.write({
-                "user_ids": [(6, 0, employee_users.ids)]
-            })
         # Add stages to the project
         stages = self.env["project.task.type"].search([('id', "in", 
             [self.env.ref("medical_residence_base.project_stage_todo").id,
@@ -296,19 +291,15 @@ class Residence(models.Model):
 
     def action_see_project(self):
         self.ensure_one()
-        return {
-            "type": "ir.actions.act_window",
-            "name": _("Activities"),
-            "view_mode": "kanban,form",
-            "res_model": "project.task",
-            "domain": [
-                ("project_id.name", "=", self.name),
-                ("tasktype_id", "!=", self.env.ref("medical_residence_pacient_control.T_type").id)
-            ],
-            "context": "{'residence': True, 'default_project_id': "
-            + str(self.sudo().project_ids[0].id)
-            + "}",
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "project.act_project_project_2_project_task_all"
+        )
+        action['domain'] = [('project_id', '=', self.sudo().project_ids[0].id)]
+        action['context'] = {
+            'default_residence_id' : self.id,
+            'default_project_id' : self.sudo().project_ids[0].id,
         }
+        return action
     def action_see_docs(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(
@@ -372,9 +363,7 @@ class Room(models.Model):
     
     name = fields.Char(string=_("Name"), required=True)
     floor = fields.Integer(string=_("Floor"))
-
     resident_ids = fields.One2many("res.partner", "room_res_id", string=_("Resident"))
-
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))
 
     @api.depends("capacity", "resident_ids")
