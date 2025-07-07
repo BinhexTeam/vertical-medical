@@ -1,17 +1,31 @@
 # Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# Copyright 2024 Binhex - Adasat Torres de León.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import models, fields, api, _
 import re
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 import datetime
+from ast import literal_eval
+from odoo.osv.expression import AND
 import logging
 _logger = logging.getLogger(__name__)
 
 class Residence(models.Model):
     _name = "rm.residence"
+    _inherit = ["mail.thread.cc", "mail.activity.mixin"]
     _description = "Residence"
+    
+    company_id = fields.Many2one(
+        string="Company", 
+        comodel_name="res.company", 
+        ondelete='restrict',
+        default=lambda self: self.env.company.id,
+        tracking=True
+    )
 
     directory_ids = fields.One2many("dms.directory", "residence_id")
+    
     # Fields
     name = fields.Char(string=_("Name"), required=True)
     description = fields.Text(string=_("Description"))
@@ -60,6 +74,7 @@ class Residence(models.Model):
         "project.project", "residence_id", string=_("Projects")
     )
     ticket_ids = fields.One2many("helpdesk.ticket", "residence_id", string=_("Tickets"))
+    main_access_group_id = fields.Many2one(comodel_name="dms.access.group")
 
     @api.onchange("email")
     def validate_mail(self):
@@ -111,21 +126,13 @@ class Residence(models.Model):
         )
         _logger.info(str(helpdesk_team_id))
         if not helpdesk_team_id:
-            _logger.info("TEAM "+str(employee_users))
             helpdesk_team_id = self.env["helpdesk.ticket.team"].create(
                 {
                     "name": res.name,
                     "default_project_id": project.id,
                     "residence_id": res.id,
-                    "user_ids": [(6, 0, employee_users.ids)]
-                    if employee_users
-                    else False,
                 }
             )
-        else:
-            helpdesk_team_id.write({
-                "user_ids": [(6, 0, employee_users.ids)]
-            })
         # Add stages to the project
         stages = self.env["project.task.type"].search([('id', "in", 
             [self.env.ref("medical_residence_base.project_stage_todo").id,
@@ -140,56 +147,62 @@ class Residence(models.Model):
         if res.name != _("Residents") and res.name != _("Employees"):
             directory_ids = self.env["dms.directory"].search([("name", "=", res.name)])
             parent_R = self.env.ref(
-                "medical_residence_base.documents_residents_folder"
-            ).id
-            parent_E = self.env.ref(
-                "medical_residence_base.documents_employees_folder"
-            ).id
-            # Assign folders for residence
-            if len(directory_ids) == 0:
-                residents_folder = self.env["dms.directory"].create(
+                "medical_residence_base.dms_residents_%s" % res.company_id.id
+            )
+            
+            directory = self.env.ref(
+                'medical_residence_base.dms_residence_%s' % (res.id),
+                raise_if_not_found=False
+            )
+            
+            if not directory:
+                group = self.env['dms.access.group'].create([{
+                    'name' : res.name,
+                    'perm_create' : True,
+                    'perm_write' : True,
+                    'perm_unlink': True
+                }])
+                res.main_access_group_id = group.id
+                directory = self.env["dms.directory"].create(
                     {
                         "name": res.name,
-                        "parent_id": parent_R,
+                        "parent_id": parent_R.id,
                         "residence_id": res.id,
-                        'is_root_directory': False
+                        'is_root_directory': False,
+                        'inherit_group_ids' : False,
+                        'group_ids': [
+                            (Command.link(group.id)),
+                            (Command.link(self.env.ref(
+                                'medical_residence_base.access_group_dms_admin'
+                                ).id))
+                            ]
                     }
                 )
-                employees_folder = self.env["dms.directory"].create(
-                    {
-                        "name": res.name,
-                        "parent_id": parent_E,
-                        "residence_id": res.id,
-                        'is_root_directory': False
-                    }
+                self._create_xml_id(
+                    module='medical_residence_base',
+                    name="dms_residence_%s" % (res.id), 
+                    model='dms.directory',
+                    res_id=directory.id,
+                    noupdate=True
                 )
+                
+        page_id = self.env['document.page'].sudo().search([('name', '=', res.name)])
+        if not page_id: 
+            page_id = self.env['document.page'].sudo().create({
+                'name': res.name,
+                'type': 'category',
+            })
         return res
 
     def write(self, vals):
         res = super(Residence, self).write(vals)
-        _logger.info("HOLA res "+str(res))
-        _logger.info("HOLA self "+str(self))
         if vals.get("name"):
-            # Change project and folder name
-            [x.write({"name": vals["name"]}) for x in self.project_ids]
-            directory_ids = self.env["dms.directory"].search([("name", "=", self.name)])
-            if directory_ids:
-                for folder in directory_ids:
-                    folder.write({"name": vals["name"]})
-            else:
-                parent_R = self.env.ref(
-                    "medical_residence_base.documents_residents_folder"
-                ).id
-                parent_E = self.env.ref(
-                    "medical_residence_base.documents_employees_folder"
-                ).id
-                if len(directory_ids) == 0:
-                    residents_folder = self.env["dms.directory"].create(
-                        {"name": vals["name"], "parent_id": parent_R}
-                    )
-                    employees_folder = self.env["dms.directory"].create(
-                        {"name": vals["name"], "parent_id": parent_E}
-                    )
+            directory = self.env.ref(
+                'medical_residence_base.dms_residence_%s' % (self.id),
+                raise_if_not_found=False
+            )
+            directory.write({'name': vals.get('name')})
+                    
         if vals.get('employee_ids'):
             helpdesk_team_id = self.env["helpdesk.ticket.team"].search(
                 [("name", "=", self.name)], limit=1
@@ -205,10 +218,23 @@ class Residence(models.Model):
                     ),
                 ]
             )
+            
             helpdesk_team_id.write({
                 "user_ids": [(6, 0, employee_users.ids)]
             })
-
+            
+            project = self.env['project.project'].search([('residence_id', '=', self.id)])
+            if project:
+                project.write({
+                    'favorite_user_ids': [(6,0,employee_users.ids)],
+                })
+                
+                followers_partner_ids = project.message_follower_ids.mapped('partner_id')
+                employee_partner_ids =  employee_users.mapped('partner_id')
+                
+                unsubscribe_partner_ids = followers_partner_ids - employee_partner_ids
+                project.message_unsubscribe(partner_ids=unsubscribe_partner_ids.ids)
+                project.message_subscribe(partner_ids=employee_users.mapped('partner_id').ids)
         return res
 
     def action_see_expenses(self):
@@ -241,7 +267,8 @@ class Residence(models.Model):
             "res_model": "helpdesk.ticket",
             "type": "ir.actions.act_window",
             "view_mode": "kanban,tree,form",
-            "domain": [("residence_id", '=', self.id)]
+            "domain": [("residence_id", '=', self.id)],
+            "context" : {'default_residence_id' :  self.id}
         }
 
     def action_see_residents(self):
@@ -264,20 +291,59 @@ class Residence(models.Model):
 
     def action_see_project(self):
         self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "project.act_project_project_2_project_task_all"
+        )
+        action['domain'] = [('project_id', '=', self.sudo().project_ids[0].id)]
+        action['context'] = {
+            'default_residence_id' : self.id,
+            'default_project_id' : self.sudo().project_ids[0].id,
+        }
+        return action
+    def action_see_docs(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "dms.action_dms_directory"
+        )
+        directory = self.env.ref("medical_residence_base.dms_residence_%s" % self.id )
+        domain = AND(
+            [
+                literal_eval(action["domain"].strip()),
+                [("parent_id", "child_of", directory.id)]
+            ]
+        )
+        action['domain'] = domain
+        action["context"] = dict(
+            self.env.context,
+            active_id= directory.id,
+            active_ids= directory.ids,
+            default_parent_id=directory.id,
+            searchpanel_default_parent_id=directory.id,
+        )
+        return action 
+        
+    #action_see_docs
+    def action_see_treatments(self):
+        self.ensure_one()
         return {
             "type": "ir.actions.act_window",
             "name": _("Activities"),
-            "view_mode": "kanban,form",
+            "view_mode": "kanban,tree,form",
             "res_model": "project.task",
-            "domain": [("project_id.name", "=", self.name)],
+            "domain": [
+                ("project_id.name", "=", self.name),
+                ("tasktype_id", "=", self.env.ref("medical_residence_pacient_control.T_type").id)
+            ],
             "context": "{'residence': True, 'default_project_id': "
             + str(self.sudo().project_ids[0].id)
             + "}",
         }
+    def _create_xml_id(self, **kw):
+        self.env['ir.model.data'].create(kw)
 
 class Workspace(models.Model):
     _inherit = "dms.directory"
-
+    
     residence_id = fields.Many2one("rm.residence")
 
     @api.onchange("residence_id")
@@ -288,11 +354,16 @@ class Room(models.Model):
     _name = "rm.residence.room"
     _description = "Residence Rooms"
 
+    
+    company_id = fields.Many2one(
+        string='Company',
+        comodel_name='res.company',
+        related = "residence_id.company_id"
+    )
+    
     name = fields.Char(string=_("Name"), required=True)
     floor = fields.Integer(string=_("Floor"))
-
     resident_ids = fields.One2many("res.partner", "room_res_id", string=_("Resident"))
-
     residence_id = fields.Many2one("rm.residence", string=_("Residence"))
 
     @api.depends("capacity", "resident_ids")

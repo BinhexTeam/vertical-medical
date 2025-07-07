@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="resident_medical_fields_multicompany" model="ir.rule">
+        <field name="name">Residence Medical Fields Multi Company</field>
+        <field name="model_id" ref="medical_residence_pacient_control.model_rm_resident_medical_info_fields"/>
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="resident_treatment_multicompany" model="ir.rule">
+        <field name="name">Resident Treatment Fields Multi Company</field>
+        <field name="model_id" ref="medical_residence_pacient_control.model_rm_resident_treatment"/>
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

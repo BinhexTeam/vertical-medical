@@ -85,7 +85,12 @@
       <form string="Residence Form">
         <sheet>
           <div class="oe_button_box" name="button_box">
-          <button name="action_see_tickets" type="object" class="oe_stat_button" icon="fa-life-ring">
+          <button name="action_see_docs" type="object" class="oe_stat_button" icon="fa-folder">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_text">Documents</span>
+              </div>
+            </button>
+            <button name="action_see_tickets" type="object" class="oe_stat_button" icon="fa-life-ring">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Incidencias</span>
               </div>
@@ -93,6 +98,11 @@
             <button name="action_see_project" type="object" class="oe_stat_button" icon="fa-check-square-o">
               <div class="o_field_widget o_stat_info">
                 <span class="o_stat_text">Activities</span>
+              </div>
+            </button>
+            <button name="action_see_treatments" type="object" class="oe_stat_button" icon="fa-stethoscope">
+              <div class="o_field_widget o_stat_info">
+                <span class="o_stat_text">Treatments</span>
               </div>
             </button>
             <button name="action_see_residents" type="object" class="oe_stat_button" icon="fa-users">
@@ -114,6 +124,7 @@
           </div>
           <group>
             <group>
+              <field name="company_id" groups="base.group_system"/>
               <field name="type_id"/>
             </group>
             <group>
@@ -154,10 +165,20 @@
               </field>
             </page>
             <page string="Employees" groups="medical_residence_base.group_residence_manager">
-              <field name="employee_ids" widget="many2many" mode="kanban" />
+              <field name="company_id" invisible="1"/>
+              <field name="employee_ids" widget="many2many" mode="kanban" domain="[('company_id', '=', company_id)]" />
             </page>
           </notebook>
         </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" />
+            <field name="activity_ids" widget="mail_activity" />
+            <field
+                name="message_ids"
+                widget="mail_thread"
+                options="{'post_refresh': 'recipients', 'open_attachments': True}"
+            />
+          </div>
       </form>
     </field>
   </record>

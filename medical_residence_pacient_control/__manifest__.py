@@ -11,10 +11,17 @@
     "category": "Medical",
     "version": "16.0.1.0",
     # any module necessary for this one to work correctly
-    "depends": ["medical_residence_pacient", "calendar", "medical_residence_base","product"],
+    "depends": [
+        "medical_residence_pacient", 
+        "calendar", 
+        "medical_residence_base",
+        "product",
+        "project",
+    ],
     # always loaded
     "data": [
         # Data
+        "data/rm_medical_info_fields_data.xml",
         "data/task_types.xml",
         "data/mail_template.xml",
         "data/hygiene_elems.xml",
@@ -22,6 +29,7 @@
         "data/product_category.xml",
         # Security
         "security/ir.model.access.csv",
+        "security/ir_rules.xml",
         "security/res_config_settings_security.xml",
         # Wizards
         "wizards/rm_resident_treatment_wizard_views.xml",
@@ -30,7 +38,9 @@
         "views/res_partner_views.xml",
         "views/res_config_settings_views.xml",
         "views/rm_resident_views.xml",
+        "views/rm_medical_info_fields_views.xml",
+        "security/ir_rules.xml"
     ],
     "images": ["static/description/icon.png"],
-    "mantainer": ["szalatyzuzanna"],
+    "mantainer": ["szalatyzuzanna", "adasatorres"],
 }

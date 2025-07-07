@@ -7,7 +7,6 @@
       <field name="arch" type="xml">
         <xpath expr="//header/button" position="before">
           <button name="send_mail" type="object" string="Send By Email" class="oe_highlight"/>
-          <button name="%(medical_residence_pacient_control.action_create_treatment)d" string="Create Treatment" type="action" class="oe_highlight" context="{'resident': partner_id}"/>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="attributes">
           <field name="tasktype_id" invisible="1"/>
@@ -15,14 +14,14 @@
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="after">
           <field name="project_name" invisible="1"/>
-          <field name="tasktype_id" string="Task Type"/>
+          <field name="tasktype_id" string="Task Type" options="{'no_create': True, 'no_create_edit':True}"/>
         </xpath>
         <xpath expr="//notebook" position="before">
           <group>
             <field name="tasktype_id" invisible="1"/>
             <field name="app_selection_id" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.App_type)d)]}"/>
             <field name="app_partner_id" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.App_type)d)]}" domain="[('residence_id', '=', False)]"/>
-            <field name="product_event_ids" widget="many2many_tags" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.T_type)d)]}" readonly="context.get('default_product_event_ids')"/>
+            <field name="product_event_ids" widget="many2many_tags" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.T_type)d)]}" readonly="True"/>
             <field name="control_hygiene_ids" attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.H_type)d)]}">
               <tree editable="top">
                 <field name="name_id"/>
@@ -33,31 +32,55 @@
             </field>
           </group>
           <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.BC_type)d)]}">
-            <h2>IMC</h2>
+            <h2>Basic Control</h2>
+            <group>
+              <field name="systolic_pressure"/>
+              <field name="diastolic_pressure"/>
+              <field name="heart_rate"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.saturation_type)d)]}">
+            <h2>Saturation Control</h2>
+            <group>
+              <field name="saturation"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.weight_type)d)]}">
+            <h2>Weight Control</h2>
+            <group>
+              <field name="weight"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.blood_glucose_type)d)]}">
+            <h2>Blood Glucose Control</h2>
+            <group>
+              <field name="glucose"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.height_type)d)]}">
+            <h2>Height Control</h2>
             <group>
               <field name="height"/>
-              <field name="weight"/>
-              <field name="imc"/>
             </group>
-            <h2>Pressure</h2>
-            <group>
-              <field name="heartbeat"/>
-              <field name="pressure"/>
-              <field name="res_gender" invisible="1"/>
-            </group>
-            <div attrs="{'invisible': [('res_gender', '!=', 'fe')]}">
-              <h2>Period</h2>
-              <group>
-                <field name="period_cicle_start"/>
-                <field name="period_cicle_end"/>
-                <field name="num_days"/>
-              </group>
-            </div>
           </div>
-          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.A_type)d)]}">
-            <field name="directory_id" invisible="1"/>
-            <field name="tag_id" invisible="1"/>
-            <field name="document_ids" context="{'default_partner_id': partner_id, 'default_directory_id': directory_id, 'default_tag_ids': [tag_id]}"/>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.temperature_type)d)]}">
+            <h2>Temperature Control</h2>
+            <group>
+              <field name="temperature"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.bowel_movement_type)d)]}">
+            <h2>Bowel Movement Control</h2>
+            <group>
+              <field name="bowel_movement"/>
+            </group>
+          </div>
+          <div attrs="{'invisible': [('tasktype_id', '!=', %(medical_residence_pacient_control.menstruation_type)d)]}">
+            <h2>Menstruation</h2>
+            <group>
+              <field name="menstruation_start"/>
+              <field name="menstruation_end"/>
+            </group>
           </div>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="replace">
@@ -77,9 +100,8 @@
       <field name="name">project.task.pacient.view</field>
       <field name="model">project.task</field>
       <field name="arch" type="xml">
-        <calendar string="Tasks" date_start="date_deadline" hide_time="true" color="user_ids" mode="month" quick_add="false" event_open_popup="false">
+        <calendar string="Tasks" date_start="date_deadline" hide_time="true"  mode="month" quick_add="false" event_open_popup="false">
           <field name="partner_id" widget="many2one_avatar"/>
-          <field name="user_ids" filters="1"/>
           <field name="name"/>
           <field name="date_deadline"/>
           <field name="priority" widget="priority"/>
@@ -94,7 +116,6 @@
       <field name="arch" type="xml">
         <calendar string="Filtered Tasks" hide_time="true" date_start="date_deadline" color="stage_id" mode="month" quick_add="false" event_open_popup="false">
           <field name="partner_id" widget="many2one_avatar"/>
-          <field name="user_ids" filters="1"/>
           <field name="name"/>
           <field name="date_deadline"/>
           <field name="priority" widget="priority"/>
@@ -114,5 +135,39 @@
         </xpath>
       </field>
     </record>
+
+    <record model="ir.ui.view" id="project_task_type_view">
+      <field name="name">project.task.tasktype.form</field>
+      <field name="model">project.task.tasktype</field>
+      <field name="arch" type="xml">
+        <form string="Task Type">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="project_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_task_type_tree_view">
+      <field name="name">project.task.tasktype.tree</field>
+      <field name="model">project.task.tasktype</field>
+      <field name="arch" type="xml">
+        <tree string="Task Types">
+          <field name="name"/>
+          <field name="project_ids" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="project_task_type_action">
+      <field name="name">Task Types</field>
+      <field name="res_model">project.task.tasktype</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="project_tasktype_menu" name="Tasks Types" parent="project.menu_project_config" sequence="10" action="project_task_type_action"/>
   </data>
 </odoo>

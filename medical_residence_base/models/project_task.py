@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 
 class Project(models.Model):
     _inherit = "project.task"
+    _order = "date_deadline asc, priority desc, sequence, id desc"
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):

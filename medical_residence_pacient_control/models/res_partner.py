@@ -33,15 +33,11 @@ class Resident(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": _("Basic"),
-            "view_mode": "calendar",
+            "view_mode": "tree,form",
             "res_model": "project.task",
-            "view_id": self.env.ref(
-                "medical_residence_pacient_control.project_task_pacient_view_filtered"
-            ).id,
             "domain": [
-                "&",
                 ("partner_id", "=", self.id),
-                ("tasktype_id", "=", self.env.ref("medical_residence_pacient_control.BC_type").id),
+                ("tasktype_id", "=", self.env.ref("medical_residence_pacient_control.BC_type").id)
             ],
             "context": {
                 "default_project_id": self.sudo().residence_id.project_ids[0].id,
@@ -55,16 +51,12 @@ class Resident(models.Model):
         return {
             "type": "ir.actions.act_window",
             "name": _("Treatment"),
-            "view_mode": "calendar",
+            "view_mode": "tree,form",
             "res_model": "project.task",
             "domain": [
-                "&",
                 ("partner_id", "=", self.id),
                 ("tasktype_id", "=", self.env.ref("medical_residence_pacient_control.T_type").id),
             ],
-            "view_id": self.env.ref(
-                "medical_residence_pacient_control.project_task_pacient_view_filtered"
-            ).id,
             "context": {
                 "default_project_id": self.sudo().residence_id.project_ids[0].id,
                 "default_partner_id": self.id,

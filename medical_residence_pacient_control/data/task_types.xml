@@ -18,5 +18,38 @@
     <record id="App_type" model="project.task.tasktype">
       <field name="name">Appointment</field>
     </record>
+    <record id="saturation_type" model="project.task.tasktype">
+      <field name="name">Saturation Control</field>
+    </record>
+    <record id="weight_type" model="project.task.tasktype">
+      <field name="name">Weight Control</field>
+    </record>
+    <record id="blood_glucose_type" model="project.task.tasktype">
+      <field name="name">Blood Glucose Control</field>
+    </record>
+    <record id="height_type" model="project.task.tasktype">
+      <field name="name">Height Control</field>
+    </record>
+    <record id="temperature_type" model="project.task.tasktype">
+      <field name="name">Temperature Control</field>
+    </record>
+    <record id="bowel_movement_type" model="project.task.tasktype">
+      <field name="name">Bowel Movement Control</field>
+    </record>
+    <record id="shower_type" model="project.task.tasktype">
+      <field name="name">Shower</field>
+    </record>
+    <record id="tooth_brushing_type" model="project.task.tasktype">
+      <field name="name">Tooth Brushing</field>
+    </record>
+    <record id="urination_type" model="project.task.tasktype">
+      <field name="name">Urination</field>
+    </record>
+    <record id="menstruation_type" model="project.task.tasktype">
+      <field name="name">Menstruation</field>
+    </record>
+    <record id="nail_cutting_type" model="project.task.tasktype">
+      <field name="name">Nail Cutting</field>
+    </record>
   </data>
 </odoo>

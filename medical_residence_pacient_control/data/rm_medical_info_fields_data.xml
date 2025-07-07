@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="resident_medical_info_fields_1" model="rm.resident.medical.info.fields">
+            <field name="name">Centro de Salud</field>
+        </record>
+        <record id="resident_medical_info_fields_2" model="rm.resident.medical.info.fields">
+            <field name="name">Nombre del Médico de Referencia</field>
+        </record>
+        <record id="resident_medical_info_fields_3" model="rm.resident.medical.info.fields">
+            <field name="name">Contacto del Médico de Referencia</field>
+        </record>
+        <record id="resident_medical_info_fields_4" model="rm.resident.medical.info.fields">
+            <field name="name">Centro de Unidad de Salud Mental</field>
+        </record>
+        <record id="resident_medical_info_fields_5" model="rm.resident.medical.info.fields">
+            <field name="name">Nombre de Profesional de Salud Mental</field>
+        </record>
+        <record id="resident_medical_info_fields_6" model="rm.resident.medical.info.fields">
+            <field name="name">Contacto de Profesional de Salud Mental</field>
+        </record>
+        <record id="resident_medical_info_fields_7" model="rm.resident.medical.info.fields">
+            <field name="name">Diágnostico</field>
+        </record>
+        <record id="resident_medical_info_fields_8" model="rm.resident.medical.info.fields">
+            <field name="name">Grado de Discapacidad</field>
+        </record>
+        <record id="resident_medical_info_fields_9" model="rm.resident.medical.info.fields">
+            <field name="name">Grado de Dependencia</field>
+        </record>
+    </data>
+</odoo>

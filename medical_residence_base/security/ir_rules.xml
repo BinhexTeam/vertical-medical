@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="residence_multicompany" model="ir.rule">
+        <field name="name">Residence Multi Company</field>
+        <field name="model_id" ref="medical_residence_base.model_rm_residence"/>
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="residence_room_multicompany" model="ir.rule">
+        <field name="name">Residence Room Multi Company</field>
+        <field name="model_id" ref="medical_residence_base.model_rm_residence_room"/>
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="residence_type_multicompany" model="ir.rule">
+        <field name="name">Residence Type Multi Company</field>
+        <field name="model_id" ref="medical_residence_base.model_rm_residence_type"/>
+        <field name="global" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

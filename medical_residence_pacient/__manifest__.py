@@ -16,9 +16,10 @@
     # always loaded
     "data": [
         "security/ir.model.access.csv",
-        "views/dms_file_views.xml",
         "views/res_partner_resident_views.xml",
         "views/res_partner_family_views.xml",
+        "views/rm_resident_relationship_type_views.xml",
+        "views/rm_resident_relationship_legal_views.xml"
     ],
     "images": ["static/description/icon.png"],
     'assets': {

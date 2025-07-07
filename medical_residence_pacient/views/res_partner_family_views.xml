@@ -48,12 +48,5 @@
       </field>
     </record>
 
-    <menuitem id="resident_menu_contact" 
-    name="Family" 
-    parent="medical_residence_base.main_residence_management_menu" 
-    sequence="4" 
-    action="family_list_action"
-    />
-
   </data>
 </odoo>

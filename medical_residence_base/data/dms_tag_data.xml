@@ -1,9 +1,5 @@
-<odoo noupdate="1">
-  <!-- Document storage -->
-  <record id="storage_base" model="dms.storage">
-    <field name="name">Resident Storage</field>
-    <field name="save_type">database</field>
-  </record>
+<odoo>
+  
   <!-- Document category -->
   <record id="documents_employees_documents" model="dms.category">
     <field name="name">Documents employees</field>
@@ -11,25 +7,7 @@
   <record id="documents_residents_documents" model="dms.category">
     <field name="name">Documents residents</field>
   </record>
-  <!-- Document directory -->
-  <record id="documents_residents_folder" model="dms.directory">
-    <field name="name">Residents</field>
-    <field name="is_root_directory" eval="True" />
-    <field name="parent_id" eval="False" />
-    <field name="color" eval="1" />
-    <field name="storage_id" ref="medical_residence_base.storage_base" />
-    <field name="category_id" ref="medical_residence_base.documents_residents_documents" />
-    <field name="group_ids" eval="[(6, 0, [ref('medical_residence_base.access_group_dms')])]" />
-  </record>
-  <record id="documents_employees_folder" model="dms.directory">
-    <field name="name">Employees</field>
-    <field name="is_root_directory" eval="True" />
-    <field name="parent_id" eval="False" />
-    <field name="color" eval="1" />
-    <field name="storage_id" ref="medical_residence_base.storage_base" />
-    <field name="category_id" ref="medical_residence_base.documents_residents_documents" />
-    <field name="group_ids" eval="[(6, 0, [ref('medical_residence_base.access_group_dms')])]" />
-  </record>
+  
   <!-- Document tags -->
   <record id="documents_employyes_documents_certif" model="dms.tag">
     <field name="name">Certificate</field>

@@ -19,7 +19,6 @@ class ProjectTask(models.Model):
         "rm.project.task.app.selection", string=_("Appointment Type")
     )
     app_partner_id = fields.Many2one("res.partner", string=_("Appointment Partner"))
-    document_ids = fields.One2many("dms.file", "task_id", string=_("Analysis Document"))
     product_event_ids = fields.Many2many(
         "product.template",
         string=_("Medicines"),
@@ -34,54 +33,7 @@ class ProjectTask(models.Model):
     )
     project_name = fields.Char(related="project_id.name")
     residence_id_task = fields.Integer(related="project_id.residence_id.id")
-    # Document for analysis task
-    directory_id = fields.Many2one(
-        "dms.directory", compute="get_folder", store=True, string=_("Workspace")
-    )
-    tag_id = fields.Many2one("dms.tag", compute="get_tag", store=True, string=_("Tag"))
 
-    @api.depends("partner_id")
-    def get_folder(self):
-        folder = (
-            self.env["dms.directory"]
-            .sudo()
-            .search(
-                [
-                    "&",
-                    ("name", "in", self.partner_id.residence_id.mapped('name')),
-                    (
-                        "parent_id",
-                        "=",
-                        self.env.ref(
-                            "medical_residence_base.documents_residents_folder"
-                        ).id,
-                    ),
-                ]
-            )
-        )
-        if folder:
-            self.directory_id = fields.first(folder).id
-        else:
-            self.directory_id = False
-
-    @api.depends("directory_id")
-    def get_tag(self):
-        tag = (
-            self.env["dms.tag"]
-            .sudo()
-            .search(
-                [
-                    (
-                        "id",
-                        "=",
-                        self.env.ref(
-                            "medical_residence_base.documents_residents_documents_analitica"
-                        ).id,
-                    )
-                ]
-            )
-        )
-        self.tag_id = tag.id
     # ----------------------------------------------------------------------------------------------------------------
     @api.model
     def create(self, vals):
@@ -128,14 +80,14 @@ class ProjectTask(models.Model):
                 {"name_id": self.env.ref("medical_residence_pacient_control.hygiene_elem_shave").id}
             )
             elem_3 = self.env["rm.resident.control.hygiene.element"].create(
-                {"name_id": self.env.ref("pacienmedical_residence_pacient_controlt_control.hygiene_elem_teeth").id}
+                {"name_id": self.env.ref("medical_residence_pacient_control.hygiene_elem_teeth").id}
             )
 
             self.control_hygiene_ids = [(6, 0, [elem_1.id, elem_2.id, elem_3.id])]
 
     # Basic control fields for task
-    weight = fields.Float(string=_("Weight"))
-    height = fields.Float(string=_("Height (meters)"))
+    #weight = fields.Float(string=_("Weight"))
+    #height = fields.Float(string=_("Height (meters)"))
     imc = fields.Float(compute="compute_imc", string=_("IMC"))
 
     heartbeat = fields.Integer(string=_("Heartbeat in 30s"))
@@ -146,6 +98,32 @@ class ProjectTask(models.Model):
     num_days = fields.Char(compute="num_days_", string=_("Period Cicle"))
 
     res_gender = fields.Selection(related="partner_id.gender", string=_("Gender"))
+
+
+    # Control basico
+    systolic_pressure = fields.Float(string=_("Systolic Pressure"))
+    diastolic_pressure = fields.Float(string=_("Diastolic Pressure"))
+    heart_rate = fields.Float(string=_("Heart Rate"))
+
+    # Control saturacion
+    saturation = fields.Integer(string=_("Saturation"))
+
+    # Control peso
+    weight = fields.Float(string=_("Weight"))
+
+    # Control de glucemia
+    glucose = fields.Float(string=_("Glucose"))
+
+    # Control de altura
+    height = fields.Float(string=_("Height"))
+    temperature = fields.Float(string=_("Temperature"))
+    
+    # Control de deposiciones
+    bowel_movement = fields.Selection([("normal", _("Normal")), ("hard", _("Hard")), ("soft", _("Soft"))], string=_("Bowel Movement"))
+
+    # Menstruacion
+    menstruation_start = fields.Date(string=_("Menstruation Start"))
+    menstruation_end = fields.Date(string=_("Menstruation End"))
 
     @api.depends("height", "weight")
     def compute_imc(self):

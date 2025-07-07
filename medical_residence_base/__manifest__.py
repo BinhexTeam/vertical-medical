@@ -24,11 +24,13 @@
         "project",
         "helpdesk_mgmt",
         "helpdesk_type",
+        "document_knowledge"
     ],
     # always loaded
     "data": [
         # Security
         "security/res_config_setting_security.xml",
+        "security/ir_rules.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         # Data
@@ -36,6 +38,7 @@
         "data/project_task_type_data.xml",
         "data/dms_tag_data.xml",
         # Views
+        'views/res_company_views.xml',
         "views/residence_views.xml",
         "views/residence_type_views.xml",
         "views/rm_image_views.xml",
