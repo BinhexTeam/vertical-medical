@@ -13,13 +13,15 @@ _logger = logging.getLogger(__name__)
 
 class Residence(models.Model):
     _name = "rm.residence"
+    _inherit = ["mail.thread.cc", "mail.activity.mixin"]
     _description = "Residence"
     
     company_id = fields.Many2one(
         string="Company", 
         comodel_name="res.company", 
         ondelete='restrict',
-        default=lambda self: self.env.company.id
+        default=lambda self: self.env.company.id,
+        tracking=True
     )
 
     directory_ids = fields.One2many("dms.directory", "residence_id")
