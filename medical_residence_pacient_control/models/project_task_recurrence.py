@@ -13,7 +13,7 @@ class ProjectTask(models.Model):
     def _get_recurring_fields(self):
         # Add fields to recurring tasks
         return [
-            "allowed_user_ids",
+            "user_ids",
             "company_id",
             "description",
             "displayed_image_id",
