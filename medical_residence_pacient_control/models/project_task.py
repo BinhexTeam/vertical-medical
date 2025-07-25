@@ -120,6 +120,8 @@ class ProjectTask(models.Model):
     
     # Control de deposiciones
     bowel_movement = fields.Selection([("normal", _("Normal")), ("hard", _("Hard")), ("soft", _("Soft"))], string=_("Bowel Movement"))
+    
+    dose = fields.Char(string="Dose")
 
     # Menstruacion
     menstruation_start = fields.Date(string=_("Menstruation Start"))
