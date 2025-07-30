@@ -52,7 +52,7 @@ class Treatment(models.Model):
     )
 
     product_ids = fields.Many2many(
-        "product.template",
+        "product.product",
         string=_("Medicines"),
         domain=lambda self: [
             "|",

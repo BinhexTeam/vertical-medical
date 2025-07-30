@@ -20,7 +20,7 @@ class ProjectTask(models.Model):
     )
     app_partner_id = fields.Many2one("res.partner", string=_("Appointment Partner"))
     product_event_ids = fields.Many2many(
-        "product.template",
+        "product.product",
         string=_("Medicines"),
         domain=lambda self: [
             "|",
