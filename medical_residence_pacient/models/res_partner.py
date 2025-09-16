@@ -40,6 +40,10 @@ class Resident(models.Model):
 
     date_ingress = fields.Date(string=_("Date of Admission"),
                                tracking=True)
+    
+    date_outgress = fields.Date(string=_("Date of Dimission"),
+                               tracking=True)
+
 
     age = fields.Integer(string="Age", 
                         compute="compute_age",
