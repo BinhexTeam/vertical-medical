@@ -20,7 +20,7 @@ class ProjectTask(models.Model):
     )
     app_partner_id = fields.Many2one("res.partner", string=_("Appointment Partner"))
     product_event_ids = fields.Many2many(
-        "product.template",
+        "product.product",
         string=_("Medicines"),
         domain=lambda self: [
             "|",
@@ -120,6 +120,8 @@ class ProjectTask(models.Model):
     
     # Control de deposiciones
     bowel_movement = fields.Selection([("normal", _("Normal")), ("hard", _("Hard")), ("soft", _("Soft"))], string=_("Bowel Movement"))
+    
+    dose = fields.Char(string="Dose")
 
     # Menstruacion
     menstruation_start = fields.Date(string=_("Menstruation Start"))

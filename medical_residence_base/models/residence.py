@@ -257,7 +257,10 @@ class Residence(models.Model):
             "res_model": "project.project",
             "type": "ir.actions.act_window",
             "view_mode": "kanban,tree,form",
-            "domain": [("id", 'in', self.project_ids.ids)]
+            "domain": [
+                ("id", 'in', self.project_ids.ids),
+                ("tasktype_id", "!=", self.env.ref("medical_residence_pacient_control.T_type").id)
+            ]
         }
 
     def action_see_tickets(self):

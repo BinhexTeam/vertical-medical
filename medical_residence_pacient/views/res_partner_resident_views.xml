@@ -9,6 +9,7 @@
         <field name="gender"/>
         <field name="identification"/>
         <field name="date_ingress"/>
+        <field name="date_outgress"/>
       </field>
     </field>
   </record>
@@ -25,6 +26,7 @@
         <field name="identification"/>
         <field name="gender" optional="hide"/>
         <field name="date_ingress" optional="hide"/>
+        <field name="date_outgress" optional="hide"/>
         <field name="marital_status" optional="hide"/>
         <field name="relationship_ids" widget="many2many_tags" optional="hide"/>
       </xpath>
@@ -78,6 +80,7 @@
                 <field name="residence_id" readonly="context.get('default_residence_id')"/>
                 <field name="room_res_id" domain="[('residence_id', '=', residence_id)]" context="{'residence_': residence_id}" attrs="{'invisible': [('residence_id', '=', False)]}"/>
                 <field name="date_ingress"/>
+                <field name="date_outgress"/>
               </group>
               <group>
                 <field name="observations"/>
